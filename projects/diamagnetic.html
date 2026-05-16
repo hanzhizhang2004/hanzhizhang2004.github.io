@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diamagnetic Levitation — Hanzhi Zhang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] }
+};
+</script>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead rise rise-1">
+    <a href="../index.html" class="brand"><span class="glyph"></span>Hanzhi Zhang</a>
+    <nav class="primary">
+      <a href="../index.html">Home</a>
+      <a href="../projects.html" class="is-active">Projects</a>
+      <a href="../essays.html">Essays &amp; Blogs</a>
+      <a href="../cv.html">CV</a>
+    </nav>
+  </header>
+
+  <a href="../projects.html" class="back-link">All projects</a>
+
+  <header class="detail-header rise rise-2">
+    <div class="detail-kicker">Summer Research · 07.2024 – 09.2024</div>
+    <h1 class="detail-title">Diamagnetic Levitation</h1>
+    <div class="detail-meta">University College London &nbsp;·&nbsp; Supervised by Prof. Peter Barker</div>
+  </header>
+
+  <div class="prose rise rise-3">
+    <p>A computational physics project on levitating a diamagnetic material above a permanent magnet. The aim was to develop a numerical method that finds the optimal <em>shape</em> of a diamagnetic body — given the geometry and magnetisation of a permanent magnet — that maximises its equilibrium levitation height and the stability of small oscillations about that equilibrium.</p>
+
+    <h3>Setup</h3>
+    <p>For a body of (negative) magnetic susceptibility $\chi$ in an external field $\mathbf{B}(\mathbf{r})$, the induced magnetisation gives rise to a potential energy</p>
+
+    <div class="eq">$$ U(\mathbf{r}_0) \;=\; -\,\frac{\chi}{2\mu_0}\int_V \big|\mathbf{B}(\mathbf{r}_0 + \mathbf{r}')\big|^2 \, d^3 r' \;+\; m g\, z_0 .$$</div>
+
+    <p>For $\chi&lt;0$ the body is repelled from regions of high $|\mathbf{B}|^2$. Equilibrium and its stability are governed by the Hessian of $U$ at the levitation point.</p>
+
+    <h3>Methods</h3>
+    <ul>
+      <li>Computed $\mathbf{B}$ for a rotationally symmetric source: a uniformly magnetised cylindrical core surrounded by an oppositely magnetised cylindrical shell, taking advantage of axisymmetry to reduce the integral.</li>
+      <li>Discretised the body and used a constrained numerical optimisation over admissible shape functions to maximise the levitation height $z_0$.</li>
+      <li>Linearised the dynamics about the equilibrium, computed the Hessian, and characterised the vertical and horizontal oscillation frequencies as functions of shape.</li>
+      <li>Separately optimised for the shape giving the highest horizontal oscillation frequency, which controls lateral stiffness.</li>
+    </ul>
+
+    <h3>Figures</h3>
+    <div class="figure-row">
+      <div class="placeholder-fig">Figure 1: field profile of the cylindrical core + shell magnet (placeholder)</div>
+      <div class="placeholder-fig">Figure 2: optimal shape contour (placeholder)</div>
+      <div class="placeholder-fig">Figure 3: oscillation-frequency map vs. shape parameter (placeholder)</div>
+    </div>
+
+    <p><em>(Add report images / animations here.)</em></p>
+
+    <div class="downloads">
+      <a class="download-link" href="#" >Project Report (PDF) ↓</a>
+      <a class="download-link" href="#" >Slides ↓</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>Cambridge · MMXXVI</span>
+    <span><a href="mailto:hz497@cam.ac.uk">hz497@cam.ac.uk</a></span>
+  </footer>
+
+</div>
+</body>
+</html>

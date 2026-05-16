@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fourier-Domain Quadratic Statistics in PTAs — Hanzhi Zhang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead rise rise-1">
+    <a href="../index.html" class="brand"><span class="glyph"></span>Hanzhi Zhang</a>
+    <nav class="primary">
+      <a href="../index.html">Home</a>
+      <a href="../projects.html" class="is-active">Projects</a>
+      <a href="../essays.html">Essays &amp; Blogs</a>
+      <a href="../cv.html">CV</a>
+    </nav>
+  </header>
+
+  <a href="../projects.html" class="back-link">All projects</a>
+
+  <header class="detail-header rise rise-2">
+    <div class="detail-kicker">Internship · 06.2025 – 09.2025</div>
+    <h1 class="detail-title">Fourier-Domain Quadratic Statistics in Pulsar Timing Arrays</h1>
+    <div class="detail-meta">Max Planck Institute for Gravitational Physics (AEI) &nbsp;·&nbsp; Supervised by Dr. Rutger van Haasteren</div>
+  </header>
+
+  <div class="prose rise rise-3">
+    <p>The optimal-statistic framework for pulsar timing arrays (PTAs) provides a fast, model-agnostic detection statistic for stochastic gravitational-wave backgrounds. Its calibration — and the assignment of $p$-values to observed values — has so far been formulated in the time domain. This project extends that machinery to the Fourier domain, in line with recent work on Fourier-space PTA likelihoods.</p>
+
+    <p>The work was both theoretical and computational: I derived the Fourier-domain detection statistic, reduced its quadratic filter matrix, computed analytic background distributions for $p$-values via generalised $\chi^2$ distributions, and implemented the resulting pipeline in Python, freed of any dependence on <code>nanograv/enterprise</code>.</p>
+
+    <h3>The detection statistic</h3>
+    <p>In the time domain, with white-noise covariance $\widetilde{W}$ (after marginalising the timing-model parameters) and Fourier design matrix $F$, the residuals have covariance</p>
+    <div class="eq">$$ N = \widetilde{W} + F\,\phi_N\,F^\top, \qquad C = \widetilde{W} + F\,\phi_C\,F^\top, $$</div>
+    <p>under the null and alternative hypotheses respectively. The standard quadratic filter is</p>
+    <div class="eq">$$ Q \;=\; \frac{N^{-1}(C-N)\,N^{-1}}{\sqrt{\operatorname{Tr}\!\big[\,N^{-1}(C-N)\,N^{-1}(C-N)\,\big]}}. $$</div>
+
+    <p>Changing basis via $\Sigma^{-1} = F^\top \widetilde{W}^{-1} F + \phi_N^{-1}$ and $\hat{a} = \Sigma\, F^\top \widetilde{W}^{-1}\,\delta t$, repeated application of the Woodbury identity and completion of the square reduces the unnormalised numerator to a strikingly compact form:</p>
+
+    <div class="eq">$$ \hat{a}^{\top} Q'_f \,\hat{a} \;=\; \hat{a}^{\top}\, \phi_N^{-1}\,(\phi_C - \phi_N)\,\phi_N^{-1}\,\hat{a}. $$</div>
+
+    <p>The normalisation factor simplifies likewise, and the full Fourier-domain filter reads</p>
+
+    <div class="eq">$$ Q_{\text{Fourier}} \;=\; \frac{\phi_N^{-1}\,\Delta\phi\,\phi_N^{-1}}{\sqrt{\,2\,\operatorname{Tr}\!\left[\,\bigl((\Sigma^{-1}-\phi_N^{-1})\,\Delta\phi\,\phi_N^{-1}\Sigma\bigr)^{2}\,\right]\,}}, $$</div>
+
+    <p>with $\Delta\phi = \phi_C - \phi_N$. Notably the singular object $\widetilde{W}$ never appears in the final expression — only its inverse, which is what is well-defined in any case.</p>
+
+    <h3>Dimension reduction</h3>
+    <p>Because cross-correlations involve only a subset of Fourier coefficients, $\Delta\phi$ is low-rank. Writing the projector onto that subspace as $P = G G^\top$ and performing a thin QR decomposition $\phi_N^{-1} G = G_A R$, the statistic collapses to a low-dimensional form</p>
+
+    <div class="eq">$$ \mathcal{D} \;=\; \frac{y^\top \Phi_N\, \Delta\Phi\, \Phi_N^\top y}{\sqrt{\,2\,\operatorname{Tr}\!\big[(D_r\, C_r\, \Delta\Phi)^2\big]\,}}, \qquad y := G_A^\top \hat{a}, $$</div>
+
+    <p>where $\Delta\Phi$, $\Phi_N$, $C_r$ and $D_r$ are all of dimension $r \times r$, with $r$ the number of cross-correlated frequencies. This makes diagonalisation — needed for the $p$-value calculation — tractable on real data.</p>
+
+    <h3>$p$-values via generalised $\chi^2$</h3>
+    <p>Under $H_0$, the covariance of the reduced vector $y$ is</p>
+    <div class="eq">$$ \operatorname{Cov}(y) = G_A^\top\big(\phi_N - \Sigma\big)G_A, $$</div>
+    <p>derived from the distribution of $\delta t$ under the null. Cholesky-whitening $y$, diagonalising the resulting quadratic form $L^\top Q\, L = U^\top \Lambda U$, and writing $z = U\epsilon$ with $\epsilon\sim \mathcal{N}(0,I)$, the statistic becomes</p>
+
+    <div class="eq">$$ \mathcal{D} \;=\; \sum_{i} \lambda_i\, z_i^2, $$</div>
+
+    <p>a generalised $\chi^2$ random variable. Its tail probability is then evaluated using Imhof's method, giving the $p$-value</p>
+    <div class="eq">$$ p\,(\mathcal{D} \geq \mathcal{D}_{\rm obs}) \;=\; 1 - \Pr\!\Big(\textstyle\sum_i \lambda_i z_i^2 \le \mathcal{D}_{\rm obs}\Big). $$</div>
+
+    <h3>Implementation and validation</h3>
+    <ul>
+      <li>The full Fourier-domain pipeline is implemented in Python and verified on synthetic data against analytic expectations.</li>
+      <li>Equivalence with the <code>enterprise</code> time-domain pipeline was checked numerically across the same datasets.</li>
+      <li>The implementation removes all reliance on <code>nanograv/enterprise</code> by computing the prior covariance $\phi$ natively in the Fourier basis.</li>
+      <li>The pipeline was applied to <em>Fermi</em>-LAT gamma-ray pulsar data as a test case.</li>
+    </ul>
+
+    <h3>Why this matters</h3>
+    <p>Working natively in the Fourier domain renders many ill-conditioned objects — singular white-noise covariance matrices, awkwardly marginalised timing-model parameters — irrelevant to the actual computation, and exposes the underlying low-rank structure of cross-correlations. The result is a cleaner, faster, and numerically more stable evaluation of $p$-values for the optimal statistic.</p>
+
+    <div class="downloads">
+      <a class="download-link" href="https://github.com/Hanzhiphysiks/FourierOptimalStatistics" target="_blank" rel="noopener">GitHub Repository ↗</a>
+      <a class="download-link" href="#">Logbook (PDF) ↓</a>
+      <a class="download-link" href="#">AEI Talk Slides ↓</a>
+    </div>
+
+    <p style="margin-top:2rem; font-size:0.9rem; color: var(--ink-mute); font-style: italic;">
+      References — R. van Haasteren, “On the calculation of $p$-values for quadratic statistics in Pulsar Timing Arrays,” arXiv:2506.10811 (2025); S. Valtolina &amp; R. van Haasteren, “Regularizing the pulsar timing array likelihood: A path toward Fourier space,” Phys. Rev. D <strong>112</strong>, 043046 (2025).
+    </p>
+  </div>
+
+  <footer class="footer">
+    <span>Cambridge · MMXXVI</span>
+    <span><a href="mailto:hz497@cam.ac.uk">hz497@cam.ac.uk</a></span>
+  </footer>
+
+</div>
+</body>
+</html>

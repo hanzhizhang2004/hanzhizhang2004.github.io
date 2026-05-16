@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hanzhi Zhang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ MASTHEAD ============ -->
+  <header class="masthead rise rise-1">
+    <a href="index.html" class="brand">
+      <span class="glyph"></span>
+      Hanzhi Zhang
+    </a>
+    <nav class="primary">
+      <a href="index.html" class="is-active">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="essays.html">Essays &amp; Blogs</a>
+      <a href="cv.html">CV</a>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero rise rise-2">
+    <div>
+      <h1 class="hero-name">
+        <span class="ornament">— mathematical physics —</span>
+        Hanzhi Zhang
+      </h1>
+      <div class="hero-intro">
+        <p>I am a Part III student in the <em>Mathematical Tripos</em> at the University of Cambridge, reading theoretical physics with St John's College. My interests sit at the meeting point of <em>classical and quantum gravity</em>: the geometry of black holes, gravitational instantons and Einstein manifolds, holography, and the ringdown and inspiral of compact binaries.</p>
+        <p>I came to Part III from a background in gravitational-wave data analysis and classical general relativity; the more geometric and mathematical sensibility of the Cambridge courses — and the work of people like J. Lucietti, H. Reall, J. Santos, J. Sparks, T. Wiseman and Ó. Dias — has gradually pulled my interest toward the structural and exact side of gravity. This site is a quiet place to record that drift.</p>
+        <p>Outside mathematics and physics, I fence (épée), write the occasional prose poem, and listen to a fair amount of music — nobody dislikes <a href="https://www.toe.st" target="_blank" rel="noopener">toe</a>.</p>
+      </div>
+    </div>
+
+    <!-- horizon / geodesic figure -->
+    <figure class="hero-figure">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="horizon" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#1a1814" stop-opacity="1"/>
+            <stop offset="55%" stop-color="#1a1814" stop-opacity="1"/>
+            <stop offset="78%" stop-color="#3a342c" stop-opacity=".4"/>
+            <stop offset="100%" stop-color="#3a342c" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="disk" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"  stop-color="#6e1a1f" stop-opacity="0"/>
+            <stop offset="60%" stop-color="#6e1a1f" stop-opacity="0"/>
+            <stop offset="78%" stop-color="#8a2a30" stop-opacity=".6"/>
+            <stop offset="92%" stop-color="#8a6a2e" stop-opacity=".35"/>
+            <stop offset="100%" stop-color="#8a6a2e" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- outer geodesic rings -->
+        <g fill="none" stroke="#1a1814" stroke-width="0.6" opacity=".35">
+          <ellipse cx="200" cy="200" rx="180" ry="60"/>
+          <ellipse cx="200" cy="200" rx="160" ry="48" transform="rotate(15 200 200)"/>
+          <ellipse cx="200" cy="200" rx="140" ry="38" transform="rotate(35 200 200)"/>
+          <ellipse cx="200" cy="200" rx="120" ry="28" transform="rotate(60 200 200)"/>
+          <ellipse cx="200" cy="200" rx="100" ry="20" transform="rotate(90 200 200)"/>
+        </g>
+
+        <!-- accretion disk (oxblood/gold) -->
+        <circle cx="200" cy="200" r="160" fill="url(#disk)"/>
+
+        <!-- photon sphere ring -->
+        <circle cx="200" cy="200" r="100" fill="none" stroke="#6e1a1f" stroke-width="0.8" stroke-dasharray="2 4" opacity=".5"/>
+
+        <!-- horizon -->
+        <circle cx="200" cy="200" r="70" fill="url(#horizon)"/>
+        <circle cx="200" cy="200" r="70" fill="#0a0907"/>
+
+        <!-- annotation tick marks -->
+        <g stroke="#1a1814" stroke-width="0.7" opacity=".5">
+          <line x1="200" y1="20"  x2="200" y2="30"/>
+          <line x1="200" y1="380" x2="200" y2="370"/>
+          <line x1="20"  y1="200" x2="30"  y2="200"/>
+          <line x1="380" y1="200" x2="370" y2="200"/>
+        </g>
+
+        <!-- labels -->
+        <g font-family="EB Garamond, serif" font-style="italic" fill="#3a342c" font-size="11">
+          <text x="200" y="14" text-anchor="middle">∂ℳ</text>
+          <text x="200" y="115" text-anchor="middle" fill="#6e1a1f" font-size="9">r = 3M</text>
+          <text x="200" y="206" text-anchor="middle" fill="#f4efe6" font-size="11">ℋ</text>
+        </g>
+      </svg>
+      <figcaption>schematic — horizon, photon sphere, geodesic foliation</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ RESEARCH INTERESTS ============ -->
+  <section class="rise rise-3">
+    <div class="section-head">
+      <span class="section-num">§ I</span>
+      <h2 class="section-title">Research Interests</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="research-intro">
+      <p>My research interest began in <em>gravitational-wave astrophysics</em> — the inspiral of compact binaries, pulsar timing, and the statistics of stochastic backgrounds. Part III has slowly shifted me toward a more geometric and theoretical view of gravity, in which black holes are studied as solutions of Einstein's equation in their own right, and the analytic and topological structure of those solutions is itself the object of interest. My current interests are organised loosely around four themes:</p>
+    </div>
+
+    <ol class="interests">
+      <li><span class="num">i.</span><span><strong>Geometry of black holes</strong> and gravitational solutions — uniqueness, near-horizon geometries, higher-dimensional solutions.</span></li>
+      <li><span class="num">ii.</span><span><strong>Gravitational instantons</strong> and Einstein geometry — Ricci-flat and Einstein metrics, Euclidean quantum gravity.</span></li>
+      <li><span class="num">iii.</span><span><strong>AdS black holes and holography</strong> — quasinormal modes, hydrodynamics, gauge/gravity duality.</span></li>
+      <li><span class="num">iv.</span><span><strong>Black-hole binaries and gravitational waves</strong> — post-Newtonian and self-force methods, ringdown, PTA statistics.</span></li>
+    </ol>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <span>Cambridge · MMXXVI</span>
+    <span><a href="mailto:hz497@cam.ac.uk">hz497@cam.ac.uk</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
