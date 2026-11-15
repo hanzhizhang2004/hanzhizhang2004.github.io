@@ -1,171 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CV — Hanzhi Zhang</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Hanzhi Zhang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .cv .cv-entry-top { gap: 0.25rem 1rem; }
+    .cv .cv-entry-title { min-width: 0; }
+    .cv .cv-entry-date { white-space: nowrap; }
+    .cv .cv-contact a { overflow-wrap: anywhere; }
+    .cv .cv-note { margin: 0.3rem 0 0; }
+    .cv .downloads { margin-top: 3rem; }
+
+    @media (max-width: 600px) {
+      .cv .cv-entry-top { display: block; }
+      .cv .cv-entry-date { display: block; margin-top: 0.15rem; }
+    }
+  </style>
 </head>
 <body>
 <div class="page cv">
-
   <header class="masthead rise rise-1">
-    <a href="index.html" class="brand"><span class="glyph"></span>Hanzhi Zhang</a>
-    <nav class="primary">
+    <a href="index.html" class="brand"><span class="glyph" aria-hidden="true"></span>Hanzhi Zhang</a>
+    <nav class="primary" aria-label="Main navigation">
       <a href="index.html">Home</a>
       <a href="projects.html">Projects</a>
       <a href="essays.html">Essays &amp; Blogs</a>
-      <a href="cv.html" class="is-active">CV</a>
+      <a href="cv.html" class="is-active" aria-current="page">CV</a>
     </nav>
   </header>
 
-  <div class="cv-header rise rise-2">
-    <h1 class="cv-name">Hanzhi Zhang</h1>
-    <div class="cv-contact">
-      <a href="mailto:hz497@cam.ac.uk">hz497@cam.ac.uk</a><br>
-      <a href="https://www.linkedin.com/in/hanzhi-zhang-98b052375" target="_blank" rel="noopener">linkedin.com/in/hanzhi-zhang</a><br>
-      <a href="https://github.com/Hanzhiphysiks" target="_blank" rel="noopener">github.com/Hanzhiphysiks</a>
-    </div>
-  </div>
-
-  <div class="rise rise-3">
-
-    <!-- ============ EDUCATION ============ -->
-    <h2>Education</h2>
-
-    <div class="cv-entry">
-      <div class="cv-entry-top">
-        <span class="cv-entry-title">MASt Mathematics (Part III) · University of Cambridge, St John's College</span>
-        <span class="cv-entry-date">10.2025 – 06.2026</span>
+  <main>
+    <div class="cv-header rise rise-2">
+      <h1 class="cv-name">Hanzhi Zhang</h1>
+      <div class="cv-contact">
+        <a href="mailto:hz497@cam.ac.uk">hz497@cam.ac.uk</a><br>
+        <a href="https://www.linkedin.com/in/hans-hanzhi-zhang-98b052375" target="_blank" rel="noopener">LinkedIn</a><br>
+        <a href="https://github.com/Hanzhiphysiks" target="_blank" rel="noopener">github.com/Hanzhiphysiks</a>
       </div>
-      <div class="cv-entry-sub">Mathematical Tripos — Theoretical Physics stream</div>
-      <p style="margin:0.2rem 0 0.3rem 0;"><strong>Relevant Modules.</strong> General Relativity · Black Holes · Gauge/Gravity Duality · Numerical Relativity · Solitons &amp; Instantons and Geometry · Quantum Field Theory</p>
-      <p style="margin:0.2rem 0 0;"><strong>Part III Essay.</strong> <em>Quasinormal Modes of Black Holes</em> — supervised by Prof. Harvey Reall.</p>
     </div>
 
-    <div class="cv-entry">
-      <div class="cv-entry-top">
-        <span class="cv-entry-title">BSc Theoretical Physics · University College London</span>
-        <span class="cv-entry-date">09.2022 – 07.2025</span>
+    <div class="rise rise-3">
+      <h2>Research Interests</h2>
+      <div class="cv-entry">
+        <p>My research interests lie broadly in general relativity, gravitational physics and black holes.</p>
+        <ul>
+          <li><strong>Gravitational-wave physics and astrophysics.</strong> Theoretical modelling of gravitational-wave sources and gravitational dynamics, including gravitational self-force and numerical relativity, as well as data analysis in dark energy and gravitational-wave astronomy.</li>
+          <li><strong>General relativity.</strong> Mathematical relativity, black-hole uniqueness, gravitational instantons and twistor theory.</li>
+          <li><strong>Black holes.</strong> Quasinormal modes and ringdowns, AdS black holes and higher-dimensional black holes.</li>
+        </ul>
       </div>
-      <ul class="cv-bullet-tight">
-        <li>First-Class Honours, weighted average <strong>85.76%</strong> across three years.</li>
-        <li>Ranked <strong>3<sup>rd</sup> out of 212</strong> students overall.</li>
-      </ul>
-      <p style="margin:0.3rem 0 0;"><strong>Relevant Modules.</strong> General Relativity (97.80%) · Cosmology (98.73%) · Mathematical Methods (91.39% avg.) · Classical Mechanics (95.20%) · Statistical Physics (90.31%) · Quantum Physics (88.90% avg.) · Computational Methods (83.64% avg.)</p>
-    </div>
 
-    <!-- ============ RESEARCH EXPERIENCE ============ -->
-    <h2>Research Experience</h2>
-
-    <div class="cv-entry">
-      <div class="cv-entry-top">
-        <span class="cv-entry-title">Gravitational-Wave Searches using Pulsar Timing Arrays</span>
-        <span class="cv-entry-date">06.2025 – 09.2025</span>
+      <h2>Education</h2>
+      <div class="cv-entry">
+        <div class="cv-entry-top">
+          <span class="cv-entry-title">MASt Mathematics (Part III) · University of Cambridge, St John's College</span>
+          <span class="cv-entry-date">10.2025 – 06.2027 (expected)</span>
+        </div>
+        <div class="cv-entry-sub">Intermission from Easter Term 2026, with return planned for Lent Term 2027.</div>
+        <p class="cv-note"><strong>Relevant Modules.</strong> General Relativity · Black Holes · Numerical Relativity · Astrostatistics · Cosmology · Quantum Field Theory</p>
+        <p class="cv-note"><strong>Part III Essay.</strong> <em>Quasinormal Modes of Black Holes</em> (85%, examined by Prof. Harvey Reall).</p>
+        <ul class="cv-bullet-tight">
+          <li>Studied the mathematical structure of quasinormal modes and methods for computing them.</li>
+          <li>Explored how quasinormal-mode frequencies control the regularity of the Cauchy horizon, and how this relates to strong cosmic censorship.</li>
+        </ul>
       </div>
-      <div class="cv-entry-sub">Max Planck Institute for Gravitational Physics (AEI) — Dr. Rutger van Haasteren</div>
-      <ul>
-        <li>A project extending the calculation of $p$-values for quadratic statistics in PTAs to the Fourier domain.</li>
-        <li>Derived the PTA detection statistic in the Fourier domain and performed dimension reduction of its quadratic filter matrix.</li>
-        <li>Evaluated posterior-predictive $p$-values via MCMC through generalised $\chi^2$ distributions.</li>
-        <li>Removed reliance on <code>nanograv/enterprise</code> by implementing the prior covariance $\phi$ natively in the Fourier basis, making the workflow fully Fourier-native; validated equivalence with <code>enterprise</code>.</li>
-        <li>Implemented the full Fourier-domain pipeline in Python and applied it to gamma-ray data. <a href="https://github.com/Hanzhiphysiks/FourierOptimalStatistics" target="_blank" rel="noopener">GitHub repository</a>.</li>
-      </ul>
-    </div>
 
-    <div class="cv-entry">
-      <div class="cv-entry-top">
-        <span class="cv-entry-title">Summer Research: Diamagnetic Levitation</span>
-        <span class="cv-entry-date">07.2024 – 09.2024</span>
+      <div class="cv-entry">
+        <div class="cv-entry-top">
+          <span class="cv-entry-title">BSc Theoretical Physics · University College London</span>
+          <span class="cv-entry-date">09.2022 – 07.2025</span>
+        </div>
+        <ul class="cv-bullet-tight">
+          <li>First-Class Honours with a weighted average of <strong>85.76%</strong> across all three years.</li>
+          <li>Ranked <strong>3rd out of 212</strong> students overall and received the Dean's List Award.</li>
+        </ul>
+        <p class="cv-note"><strong>Relevant Modules.</strong> Mathematics for General Relativity (97.80%) · Cosmology (98.73%) · Mathematical Methods (91.39% average)</p>
       </div>
-      <div class="cv-entry-sub">University College London — Prof. Peter Barker</div>
-      <ul>
-        <li>A computational-physics project on levitating a diamagnetic body above a permanent magnet.</li>
-        <li>Developed a numerical method to compute the optimal shape of a diamagnetic body maximising the levitation height above a rotationally symmetric permanent magnet (tested with a uniformly magnetised cylindrical core with an oppositely magnetised cylindrical shell).</li>
-        <li>Analysed the stability and dynamical properties of the levitated body, and numerically computed the optimal shape for maximum horizontal oscillation frequency.</li>
-      </ul>
-    </div>
 
-    <div class="cv-entry">
-      <div class="cv-entry-top">
-        <span class="cv-entry-title">Independent Project: Multi-Body Problem and Lagrangian Points</span>
-        <span class="cv-entry-date">04.2024</span>
+      <h2>Research Experience and Projects</h2>
+      <div class="cv-entry">
+        <div class="cv-entry-top">
+          <span class="cv-entry-title">Relativistic Mean-Motion Resonance</span>
+          <span class="cv-entry-date">10.2026 – present</span>
+        </div>
+        <div class="cv-entry-sub">Tsinghua University · Research Assistant · Supervisor: Prof. Huan Yang</div>
+        <ul>
+          <li>Derived first-order equations of motion for resonant angles in double extreme-mass-ratio inspirals using gravitational self-force theory.</li>
+          <li>Proved that the conservative dynamics are generated by a Hamiltonian and derived that Hamiltonian.</li>
+          <li>Analysed capture into mean-motion resonance in the presence of radiation reaction.</li>
+          <li>Applying black-hole perturbation theory and metric reconstruction to compute orbital evolution and identify gravitational-wave signatures of resonance.</li>
+        </ul>
       </div>
-      <div class="cv-entry-sub">University College London — Prof. David Bowler</div>
-      <ul>
-        <li>Used numerical methods to solve stable two-body and three-body gravitational problems (Earth–Moon–Sun and others) with Velocity-Verlet and fourth-order Runge–Kutta.</li>
-        <li>Analysed the accuracy and stability of Velocity-Verlet and RK4.</li>
-        <li>Analysed the existence and stability of the five Lagrangian points.</li>
-        <li>Investigated how the mass ratios affect stability.</li>
-      </ul>
-    </div>
 
-    <!-- ============ OUTPUTS & AWARDS ============ -->
-    <h2>Selected Outputs &amp; Awards</h2>
-    <div class="cv-entry">
-      <ul>
-        <li><strong>Talk (AEI).</strong> <em>Fourier-Domain Quadratic Statistics in Pulsar Timing Arrays</em> — Sep. 2025.</li>
-        <li><strong>Poster (UCL).</strong> <em>Current Landscape of NISQ vs. Fault-Tolerant Quantum Computing</em> — Apr. 2025.</li>
-        <li><a href="https://www.ucl.ac.uk/mathematical-physical-sciences/about/faculty-prizes/deans-list-commendees" target="_blank" rel="noopener"><strong>Dean's List Award</strong></a> (UCL) — top 5% of graduates, Jul. 2025.</li>
-        <li><strong>British Physics Olympiad.</strong> Top Gold (≈ top 1.5%), Feb. 2022.</li>
-      </ul>
-    </div>
-
-    <!-- ============ ADDITIONAL ============ -->
-    <h2>Additional Experience</h2>
-
-    <div class="cv-entry">
-      <div class="cv-entry-top">
-        <span class="cv-entry-title">President · Mathematics &amp; Physics Workshop, Ealing International High School</span>
-        <span class="cv-entry-date">2021</span>
+      <div class="cv-entry">
+        <div class="cv-entry-top">
+          <span class="cv-entry-title">Gravitational Self-Force in Black Hole Scattering</span>
+          <span class="cv-entry-date">06.2026 – 10.2026</span>
+        </div>
+        <div class="cv-entry-sub">Remote · Supervised by Prof. Leor Barack · In collaboration with Prof. Niels Warburton and others</div>
+        <ul>
+          <li>Studied even-parity dipole metric perturbations in Schwarzschild spacetime within gravitational self-force theory, focusing on asymptotic solutions at spatial infinity for hyperbolic orbits.</li>
+          <li>Expressed metric-perturbation amplitudes in terms of harmonic components of gauge vectors. Derived their vacuum equations away from the particle's worldline and the jumps in their values and derivatives across it.</li>
+          <li>Proved existence and uniqueness of the linear-in-time solution satisfying the vacuum equations and jump conditions after fixing the system's centre of mass.</li>
+          <li>Constructed explicit bases of vacuum solutions and determined their coefficients analytically on both sides of the particle's trajectory.</li>
+          <li>Proved by construction that exactly two modes change the centre of mass, one its position and the other its velocity. Both belong to the linear-in-time solution.</li>
+          <li>Reconstructed the metric perturbations and their initial time derivatives to provide Cauchy data for numerical evolution.</li>
+        </ul>
       </div>
-      <p style="margin:0.2rem 0 0;">Founded a school maths and physics club that grew into a weekly seminar where members chose and presented topics for discussion.</p>
-    </div>
 
-    <div class="cv-entry">
-      <div class="cv-entry-top">
-        <span class="cv-entry-title">Physics &amp; Mathematics Tutor · Online</span>
-        <span class="cv-entry-date">Every holiday</span>
+      <div class="cv-entry">
+        <div class="cv-entry-top">
+          <span class="cv-entry-title">Gravitational-Wave Searches Using Pulsar Timing Arrays</span>
+          <span class="cv-entry-date">06.2025 – 09.2025</span>
+        </div>
+        <div class="cv-entry-sub">Max Planck Institute for Gravitational Physics (AEI) · Supervisor: Dr. Rutger van Haasteren</div>
+        <p class="cv-note">Pulsar timing arrays search for gravitational waves through cross-correlations in the timing residuals of different pulsars. I extended Dr. van Haasteren's time-domain framework for optimal hypothesis testing of these correlations to the Fourier domain.</p>
+        <ul>
+          <li>Derived the PTA detection statistic in the Fourier domain and reduced the dimension of its quadratic filter matrix.</li>
+          <li>Evaluated posterior-predictive <i>p</i>-values via MCMC using generalised &chi;<sup>2</sup> distributions.</li>
+          <li>Implemented the prior covariance &phi; in the Fourier basis, removing the dependency on <code>nanograv/enterprise</code>, and validated equivalence with <code>enterprise</code>.</li>
+          <li>Implemented the complete Fourier-domain pipeline in Python and applied it to gamma-ray data. <a href="https://github.com/Hanzhiphysiks/FourierOptimalStatistics" target="_blank" rel="noopener">GitHub repository</a>.</li>
+        </ul>
       </div>
-      <p style="margin:0.2rem 0 0;">Part-time private tutor for A-Level and undergraduate students. Subjects taught include Mathematical Methods, Quantum Mechanics, Statistical Physics, Electromagnetism, and General Relativity.</p>
-    </div>
 
-    <!-- ============ SKILLS ============ -->
-    <h2>Relevant Skills</h2>
-    <div class="cv-entry cv-skills">
-      <p><strong>Computational Physics.</strong> Stochastic calculus, numerical analysis.</p>
-      <p><strong>Data Analysis.</strong> Bayesian modelling, Gaussian processes, sampling methods, regression methods.</p>
-      <p><strong>Coding.</strong> Python · Mathematica · LaTeX.</p>
-      <p><strong>Teaching.</strong> Part-time A-Level and undergraduate tutor.</p>
-    </div>
+      <div class="cv-entry">
+        <div class="cv-entry-top">
+          <span class="cv-entry-title">Optimising Diamagnetic Levitation</span>
+          <span class="cv-entry-date">07.2024 – 09.2024</span>
+        </div>
+        <div class="cv-entry-sub">University College London · Supervisor: Prof. Peter Barker</div>
+        <ul>
+          <li>Developed a numerical method to find the shape that maximises the levitation height of a diamagnetic material above a rotationally symmetric permanent magnet. Tested it on a uniformly magnetised cylindrical core surrounded by an oppositely magnetised cylindrical shell.</li>
+          <li>Analysed the stability and dynamics of the levitated material and computed the shape that maximises its horizontal oscillation frequency.</li>
+        </ul>
+      </div>
 
-    <!-- ============ INTERESTS ============ -->
-    <h2>Interests</h2>
-    <div class="cv-entry">
-      <p><strong>Fencing (épée).</strong> Anchor for the UCL fencing team. Gold medal — London Region All-Weapon Team Competition 2024; Bronze medal — Leon Paul Autumn Open D/E/U 2024.</p>
-      <p><strong>Poetry.</strong> Amateur prose poet.</p>
-    </div>
+      <div class="cv-entry">
+        <div class="cv-entry-top">
+          <span class="cv-entry-title">Multi-Body Problem and Lagrangian Points</span>
+          <span class="cv-entry-date">04.2024</span>
+        </div>
+        <div class="cv-entry-sub">University College London · Undergraduate Coursework · Examiner: Prof. David Bowler</div>
+        <ul>
+          <li>Used Velocity-Verlet and fourth-order Runge–Kutta to solve two-body and three-body gravitational problems, including the Earth–Moon–Sun system.</li>
+          <li>Analysed the accuracy and stability of both numerical methods.</li>
+          <li>Established the existence of the five Lagrangian points and investigated how mass ratios affect their stability.</li>
+        </ul>
+      </div>
 
-    <div class="downloads" style="margin-top: 3rem;">
-      <a class="download-link" href="#">Download CV (PDF) ↓</a>
-    </div>
+      <h2>Selected Academic Activities &amp; Awards</h2>
+      <div class="cv-entry">
+        <ul>
+          <li><strong>Journal Club Talk (Tsinghua University).</strong> <em>Prior Volume Effect in Bayesian Inference</em> · Oct. 2026.</li>
+          <li><strong>Summer School.</strong> <a href="https://webhomes.maths.ed.ac.uk/~scolling/StAR_School.html" target="_blank" rel="noopener">St Andrews Relativity (StAR) School</a>, University of St Andrews · Jul. 2026. Completed a PhD-level summer school on 3+1 formulations, local well-posedness of the Einstein equations, black-hole uniqueness, the Einstein constraint equations, and waves on Schwarzschild and Kerr spacetimes.</li>
+          <li><strong>Conference.</strong> <a href="https://indico.global/event/17195/overview" target="_blank" rel="noopener">Black Hole Horizons and Beyond: New Frontiers in Gravity and Holography</a> · Jul. 2026.</li>
+          <li><strong>Research Talk (MPI AEI).</strong> <em>Fourier-Domain Quadratic Statistics in Pulsar Timing Arrays</em> · Sep. 2025.</li>
+          <li><a href="https://www.ucl.ac.uk/mathematical-physical-sciences/about/faculty-prizes/deans-list-commendees" target="_blank" rel="noopener"><strong>Dean's List Award</strong></a> (UCL) · Top 5% of graduates · Jul. 2025.</li>
+          <li><strong>British Physics Olympiad.</strong> Top Gold (approximately top 1.5%) · Feb. 2022.</li>
+        </ul>
+      </div>
 
-  </div>
+      <h2>Additional Experience</h2>
+      <div class="cv-entry">
+        <div class="cv-entry-top">
+          <span class="cv-entry-title">Physics and Mathematics Tutor · <a href="https://www.visionacademy.uk" target="_blank" rel="noopener">Vision Education</a></span>
+          <span class="cv-entry-date">07.2024 – present</span>
+        </div>
+        <p class="cv-note">Part-time tutor for A-Level and undergraduate mathematics and physics. I also prepare high-school students for mathematics and physics competitions and supervise Extended Project Qualification (EPQ) projects.</p>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-top">
+          <span class="cv-entry-title">President · Mathematics and Physics Workshop, Dalian Ealing International School</span>
+          <span class="cv-entry-date">2021</span>
+        </div>
+        <p class="cv-note">Founded a maths and physics club that grew into weekly sessions where members chose and presented topics for discussion.</p>
+      </div>
+
+      <h2>Relevant Skills</h2>
+      <div class="cv-entry cv-skills">
+        <p><strong>Computational Physics.</strong> Stochastic calculus, numerical analysis.</p>
+        <p><strong>Data Analysis.</strong> Bayesian modelling, Gaussian processes, sampling methods, regression methods.</p>
+        <p><strong>Coding.</strong> Python · Mathematica · LaTeX.</p>
+        <p><strong>Teaching.</strong> Part-time A-Level and undergraduate tutoring.</p>
+      </div>
+
+      <h2>Interests</h2>
+      <div class="cv-entry">
+        <p><strong>Fencing (épée).</strong> Anchor for the UCL fencing team. Gold medal at the London Region All-Weapon Team Competition 2024 and bronze medal at the Leon Paul Autumn Open D/E/U 2024.</p>
+        <p><strong>Poetry.</strong> Amateur prose poet.</p>
+      </div>
+
+      <div class="downloads">
+        <a class="download-link" href="CV_Hanzhi_Zhang_2026_BH-3.pdf" download>Download CV (PDF) ↓</a>
+      </div>
+    </div>
+  </main>
 
   <footer class="footer">
     <span>Cambridge · MMXXVI</span>
     <span><a href="mailto:hz497@cam.ac.uk">hz497@cam.ac.uk</a></span>
   </footer>
-
 </div>
-
-<!-- MathJax for inline math in CV bullets -->
-<script>
-window.MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] } };
-</script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </body>
 </html>
