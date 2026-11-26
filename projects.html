@@ -68,32 +68,14 @@
     <!-- ============ PROJECT 3 ============ -->
     <a class="card" href="projects/fourier-pta.html">
       <div class="card-figure">
-        <!-- pulsar timing: pulse train + Fourier glyph -->
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <!-- pulsar -->
-          <circle cx="36" cy="100" r="9" fill="#1a1814"/>
-          <g stroke="#6e1a1f" stroke-width="0.8" fill="none" opacity=".55">
-            <path d="M36 100 L 80 70"/>
-            <path d="M36 100 L 80 130"/>
-            <path d="M36 100 L 95 100"/>
-          </g>
-          <!-- pulse-train residuals on the right -->
-          <g stroke="#1a1814" stroke-width="1" fill="none">
-            <path d="M85 100 L 95 100 L 100 80 L 105 100 L 115 100 L 120 95 L 125 100 L 135 100 L 140 70 L 145 100 L 160 100 L 165 90 L 170 100 L 185 100"/>
-          </g>
-          <line x1="85" y1="100" x2="185" y2="100" stroke="#c8bfae" stroke-width="0.5" stroke-dasharray="2 2"/>
-          <!-- Fourier symbol -->
-          <text x="100" y="160" font-family="EB Garamond" font-style="italic" font-size="22" fill="#6e1a1f">ℱ</text>
-          <text x="120" y="160" font-family="EB Garamond" font-style="italic" font-size="14" fill="#3a342c">[δt]</text>
-          <!-- oscillation -->
-          <path d="M65 175 Q 75 165, 85 175 T 105 175 T 125 175 T 145 175 T 165 175" fill="none" stroke="#3a342c" stroke-width="0.7" opacity=".6"/>
-        </svg>
+        <!-- a pulsar timing array on a rippling sheet of spacetime (assets/pta-sheet.js) -->
+        <canvas id="card-pta" role="img" aria-label="Animation: pulsars sit on a rippling sheet of spacetime and send pulses across it to the Earth"></canvas>
       </div>
       <div class="card-body">
         <span class="card-kicker">Internship · 06.2025 – 09.2025</span>
         <h3 class="card-title">Fourier-Domain Quadratic Statistics in PTAs</h3>
         <div class="card-meta">Max Planck Institute for Gravitational Physics (AEI) — Dr. Rutger van Haasteren</div>
-        <p class="card-desc">Extending the calculation of p-values for quadratic statistics in pulsar timing arrays into the Fourier domain — derivation, dimension reduction, and a fully Fourier-native Python pipeline.</p>
+        <p class="card-desc">Taking the optimal detection statistic for the gravitational-wave background, and its p-value, into the Fourier domain, so that gamma-ray pulsar timing arrays can use it too.</p>
         <span class="card-cta">Read more →</span>
       </div>
     </a>
@@ -283,6 +265,9 @@
     else { size(); animate(cv, advance, draw); }
   }
 }
+</script>
+<script src="assets/pta-sheet.js"></script>
+<script>PTASheet(document.getElementById("card-pta"), {elev: 40, fit: "height", zoom: 0.95, dy: 0.05, line: 0.55});
 </script>
 </body>
 </html>
