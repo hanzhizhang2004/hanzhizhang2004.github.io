@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Self-Force and Gauge Dependence in Black-Hole Scattering — Hanzhi Zhang</title>
+<title>Metric Perturbations of Scattering Orbits with Centre-of-Mass Control — Hanzhi Zhang</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -32,15 +32,31 @@ window.MathJax = {
 
   <header class="detail-header rise rise-2">
     <div class="detail-kicker">Research Project · 06.2026 – 10.2026</div>
-    <h1 class="detail-title">Self-Force and Gauge Dependence in Black-Hole Scattering</h1>
+    <h1 class="detail-title">Metric Perturbations of Scattering Orbits with Centre-of-Mass Control</h1>
     <div class="detail-meta">University of Southampton (remote) &nbsp;·&nbsp; Supervised by Prof. Leor Barack</div>
   </header>
 
   <div class="prose rise rise-3">
 
-    <h3>Gravitational self-force</h3>
+    <p>Everything on this page comes from my three notes below. Read on for a guided tour that opens them at the right page whenever you want the details, or skip to <a href="#notes">how to read them</a>.</p>
+
+    <div class="notes-strip wide">
+      <a class="note-btn is-main" href="reports/self-force-main-note.pdf" target="_blank" rel="noopener"><span class="note-kind">Main note</span><span class="note-title">The linear-in-time dipole</span><span class="note-meta">PDF · 27 pages ↗</span></a>
+      <a class="note-btn" href="reports/self-force-note-I-uniqueness.pdf" target="_blank" rel="noopener"><span class="note-kind">Supplemental Note I</span><span class="note-title">Uniqueness and the missing modes</span><span class="note-meta">PDF · 6 pages ↗</span></a>
+      <a class="note-btn" href="reports/self-force-note-II-com-modes.pdf" target="_blank" rel="noopener"><span class="note-kind">Supplemental Note II</span><span class="note-title">The modes that move the centre of mass</span><span class="note-meta">PDF · 17 pages ↗</span></a>
+    </div>
+
+    <!-- ================================================================ 1 -->
+    <h3><span class="sec-n">1</span>Background</h3>
+
+    <h4>Gravitational self-force</h4>
 
     <p>A small body of mass $\mu$ orbiting a black hole of mass $M \gg \mu$ moves, to a first approximation, on a geodesic of the black-hole metric $g_{\mu\nu}$. This approximation ignores the body's own stress–energy: the body neither curves spacetime nor radiates, so its orbit never decays. In reality it emits gravitational waves and slowly spirals in: an extreme-mass-ratio inspiral (EMRI).</p>
+
+    <figure class="fig-inline">
+      <canvas id="fig-emri" role="img" aria-label="Animation: a small body on a precessing orbit spirals into a black hole while gravitational waves ripple outwards, then plunges"></canvas>
+      <p class="fig-cap">An EMRI around a Schwarzschild black hole. Radiation reaction is hugely exaggerated here. A real EMRI takes many thousands of orbits to spiral in.</p>
+    </figure>
 
     <p>Gravitational self-force theory puts the body's stress–energy back, order by order in the mass ratio $\epsilon \sim \mu/M$, and is the most accurate description of EMRIs. At first order the body perturbs the metric, $g_{\mu\nu} \to g_{\mu\nu} + h_{\mu\nu}$, and $h_{\mu\nu}$ solves the linearised Einstein equation sourced by a point particle on the worldline $z^\mu(\tau)$. In Lorenz gauge,</p>
 
@@ -54,6 +70,293 @@ window.MathJax = {
 
     <p>The self-force $\mathcal A^{\mu}[h^{R}]$ contains radiation reaction, which drives the inspiral, and a conservative part, which shifts the orbital frequencies.</p>
 
+    <h4>Recent interest in self-force</h4>
+
+    <p>The self-force is not only about EMRIs, though. More and more attention is going to hyperbolic orbits: the small body arrives from infinity, gets flung around the black hole and is scattered back out to infinity. The prize is the scattering angle, a gauge-invariant observable that can be compared directly with post-Minkowskian calculations.</p>
+
+    <figure class="fig-inline">
+      <canvas id="fig-scatter" role="img" aria-label="Animation: a body falls in from infinity, whirls around the black hole twice and escapes to infinity"></canvas>
+      <p class="fig-cap">A scattering orbit just above the capture threshold. The body falls in from infinity, whirls around the black hole twice near its unstable circular orbit, and escapes.</p>
+    </figure>
+
+    <p>There is a catch. The scattering angle depends on the impact parameter, and the impact parameter only makes sense once we know where the centre of mass (CoM) is. For bound orbits, periodicity takes care of this for free. A scattering orbit has no periodicity to lean on, so for such an unbound orbit the natural question is:</p>
+
+    <div class="question">
+      <p class="callout-label">The question</p>
+      <p class="question-text">How do we find the metric perturbation of a scattering orbit, with good control over its centre of mass?</p>
+      <p class="question-task"><b>My task:</b> answer this question at large orbital radius.</p>
+    </div>
+
+    <!-- ================================================================ 2 -->
+    <h3><span class="sec-n">2</span>Gauge vectors</h3>
+
+    <p>Lorenz gauge, $\nabla^{\nu}\bar h_{\mu\nu} = 0$, does not use up all the gauge freedom. A little of it survives, and that little turns out to be exactly what we need.</p>
+
+    <p>On either side of the particle's worldline the field equation (1) is the vacuum equation, whose trivial solution is zero. Gauge-transform that zero,</p>
+
+    <div class="eq">$$ h_{\mu\nu} \longmapsto 0 + \delta h_{\mu\nu}, \qquad \delta h_{\mu\nu} = 2\nabla_{(\mu}\xi_{\nu)}, \qquad \nabla^{\beta}\nabla_{\beta}\,\xi_{\alpha} = 0, \tag{3} $$</div>
+
+    <p>where the wave equation on the right is what it takes to stay in Lorenz gauge. Such $\xi$ are the gauge vectors, the only residual gauge freedom we have left.</p>
+
+    <p>The piece we study is the even-parity dipole of the gauge vector,</p>
+
+    <div class="eq">$$ \begin{gathered} \xi_t = a(t,r)\,Y, \qquad \xi_r = b(t,r)\,Y, \qquad \xi_A = c(t,r)\,D_AY, \\ q := (a, b, c)^{\mathsf T}, \end{gathered} \tag{4} $$</div>
+
+    <p>with $Y$ an $\ell = 1$ spherical harmonic. Why this piece? Because <a href="reports/self-force-note-II-com-modes.pdf#page=2&amp;nameddest=section.3" target="_blank" rel="noopener">it is the key to the centre of mass hidden in the solution</a> (for the proof see <a href="reports/self-force-note-II-com-modes.pdf#page=2&amp;nameddest=section.3" target="_blank" rel="noopener">Section 3, “Ansatz for the gauge vector $\xi_\mu$”, of Supplemental Note II</a>). No other multipole, and no odd-parity piece, can move the CoM.</p>
+
+    <p>In vacuum this part of the metric is pure gauge. So the whole even-parity dipole is a pair of gauge vectors, $\xi^-$ inside the particle's orbit ($r &lt; r_{\rm p}$) and $\xi^+$ outside it ($r &gt; r_{\rm p}$), and the particle shows up only in how the two jump across its worldline. The main job is to find the vectors $q$ that make the perturbation solve (1), and to see how they move the CoM.</p>
+
+    <p>How is the CoM measured? The <a href="reports/self-force-note-II-com-modes.pdf#page=1&amp;nameddest=section.2" target="_blank" rel="noopener">Landau–Lifshitz definition</a> takes the first moment of the total effective energy density, matter plus gravity, and Gauss's theorem turns it into a surface integral at spatial infinity,</p>
+
+    <div class="eq">$$ \begin{gathered} R^{i} = \frac{1}{16\pi M}\oint_{i^0}\Big(x^{i}\,\partial_j H^{tjtk} - H^{titk}\Big)\,dS_k, \\ H^{\alpha\beta\gamma\delta} = \mathfrak g^{\alpha\gamma}\mathfrak g^{\beta\delta} - \mathfrak g^{\alpha\delta}\mathfrak g^{\beta\gamma}, \qquad \mathfrak g^{\alpha\beta} = \sqrt{-g}\,g^{\alpha\beta}. \end{gathered} \tag{5} $$</div>
+
+    <p>For a pure-gauge dipole along one Cartesian axis it collapses to a formula in $q$ alone (in fact $a$ drops out),</p>
+
+    <div class="eq">$$ \mathcal R[q] = \lim_{r\to\infty}\frac{2r(r-2M)\,b' + (4M - r)\,b - 2c}{3(r-2M)}, \tag{6} $$</div>
+
+    <p>which is how far $q$ pushes the CoM along that axis.</p>
+
+    <!-- ================================================================ 3 -->
+    <h3><span class="sec-n">3</span>Results on gauge vectors</h3>
+
+    <p>Here is the punchline first: we only ever need gauge vectors that are linear in the coordinate time $t$. Four results get us there. <a href="reports/self-force-note-II-com-modes.pdf" target="_blank" rel="noopener">Supplemental Note II</a> proves Result 1, <a href="reports/self-force-note-I-uniqueness.pdf" target="_blank" rel="noopener">Supplemental Note I</a> proves Results 2 and 3, and Result 4 is worked out in the <a href="reports/self-force-main-note.pdf#page=10&amp;nameddest=equation.4.11" target="_blank" rel="noopener">main note</a>.</p>
+
+    <div class="chain">
+
+      <div class="chain-item" id="result-1">
+        <div class="result-head">
+          <span class="result-num">Result 1</span>
+          <span class="result-title"><a href="reports/self-force-note-II-com-modes.pdf" target="_blank" rel="noopener">Two modes carry the whole frame freedom</a></span>
+          <a class="proof-chip" href="reports/self-force-note-II-com-modes.pdf" target="_blank" rel="noopener">Proof ↗</a>
+        </div>
+        <p>Among gauge vectors that keep the perturbation <a href="reports/self-force-main-note.pdf#page=5&amp;nameddest=equation.2.16" target="_blank" rel="noopener">globally regular</a> (regular on the future horizon and bounded at infinity, see <a href="reports/self-force-main-note.pdf#page=5&amp;nameddest=equation.2.16" target="_blank" rel="noopener">Sec. 2.3 of the main note</a>), any one that moves the CoM does so exactly as a combination of two modes:</p>
+        <ul>
+          <li>the shift $q_{\rm T} = (0,\; 1,\; r - M)$, independent of time, which moves the CoM by a constant,</li>
+          <li>the boost $q_{\rm B} = \big(3M - r,$ $t + 2Mb_2^+,$ $t(r - M) + 2Mc_2^+\big)$, with $b_2^+ = 2M(r - M)/[r(r - 2M)]$ ${} + \ln f$ and $c_2^+ = 2M + (r - M)\ln f$. It is linear in $t$, with $\partial_t q_{\rm B} = q_{\rm T}$, and moves the CoM at constant velocity.</li>
+        </ul>
+        <p>Adding $\delta h[x\,q_{\rm T} + v\,q_{\rm B}]$ to any solution of the field equations gives another solution whose CoM is displaced by $-(x + vt)$. Fixing the CoM frame therefore means fixing the two numbers $x$ and $v$.</p>
+      </div>
+
+      <div class="chain-item is-bridge">
+        <p>Writing down the metric perturbation in closed form at arbitrary radius is hard, and I suspect impossible. So I focus on how the solution behaves at large radius. To solve for the gauge vectors there, we work with a polynomial ansatz,</p>
+        <div class="eq">$$ q^{\pm}(t, r) = \sum_{j=0}^{n}\frac{t^{j}}{j!}\,q_j^{\pm}(r). \tag{7} $$</div>
+        <details class="curtain">
+          <summary><span>Why a polynomial in time?</span></summary>
+          <div class="curtain-body">
+            <ol>
+              <li><b>It is what simulations see.</b> Time-domain evolutions of the Lorenz-gauge dipole grow linearly in $t$. Dolan and Barack traced the growth to a pure-gauge mode that is linear in $t$ and regular at both ends. It is the boost $q_{\rm B}$ above.</li>
+              <li><b>It is exact far away.</b> When the particle is very far out, the black hole hardly matters, and the difference between the two gauge vectors becomes a Lorentz boost of flat spacetime, $q^+ - q^- \propto (-r,\; t,\; tr)^{\mathsf T}$, which is linear in $t$.</li>
+              <li><b>It is solvable.</b> The ansatz turns the wave equation for $\xi$ into ordinary differential equations in $r$, a triangular ladder. The top coefficient $q_n$ solves the static equations, and each coefficient below solves the same equations with a source made of the two above it.</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <div class="chain-item" id="result-2">
+        <div class="result-head">
+          <span class="result-num">Result 2</span>
+          <span class="result-title">Uniqueness</span>
+          <a class="proof-chip" href="reports/self-force-note-I-uniqueness.pdf" target="_blank" rel="noopener">Proof ↗</a>
+        </div>
+        <p>Within polynomials, the globally regular gauge vectors are exactly $q_{\rm T}$ and $q_{\rm B}$, at every degree. The frame modes of Result 1 are therefore the only freedom: once the CoM is fixed, a polynomial solution, if it exists, is unique.</p>
+      </div>
+
+      <div class="chain-item" id="result-3">
+        <div class="result-head">
+          <span class="result-num">Result 3</span>
+          <span class="result-title">The solution is linear in time</span>
+          <a class="proof-chip" href="reports/self-force-note-I-uniqueness.pdf#page=5&amp;nameddest=section.2" target="_blank" rel="noopener">Proof ↗</a>
+        </div>
+        <p>Uniqueness does not guarantee existence. With linear time dependence, the inner and outer gauge vectors can always be chosen to produce the jumps that the particle requires, and <a href="reports/self-force-main-note.pdf#page=15&amp;nameddest=section.6" target="_blank" rel="noopener">we find them in closed form at every point of the orbit</a>. With quadratic time dependence this is no longer possible: there are not enough “available” gauge vectors to produce all the required jumps. In the CoM frame the solution is therefore unique and linear in time, and it cannot be extended to quadratic order.</p>
+      </div>
+
+      <div class="chain-item" id="result-4">
+        <div class="result-head">
+          <span class="result-num">Result 4</span>
+          <span class="result-title">How accurate it is</span>
+          <a class="proof-chip" href="reports/self-force-main-note.pdf#page=10&amp;nameddest=equation.4.11" target="_blank" rel="noopener">Details ↗</a>
+        </div>
+        <p>When the particle is at infinity, at the very beginning of the orbit, the linear solution is exact. At large but finite radius it is accurate up to corrections of relative order $M/r_{\rm p}$ (in the gauge vector, and for the metric near the particle see <a href="reports/self-force-main-note.pdf#page=17&amp;nameddest=section.7" target="_blank" rel="noopener">Sec. 7</a>). These corrections cannot be captured by adding a term quadratic in time, since by Result 3 the quadratic solution does not exist.</p>
+      </div>
+
+    </div>
+
+    <details class="curtain">
+      <summary><span>A very rough sketch of the proof</span></summary>
+      <div class="curtain-body">
+        <ol>
+          <li><b>Solve order by order.</b> Insert the ansatz (7) into the wave equation for $\xi$. Each power of $t$ gives ordinary differential equations in $r$, a triangular ladder that we solve from the top down. Every level brings six constants of integration, so the solutions of degree at most $n$ form a space of dimension $6(n+1)$.</li>
+          <li><b>Sort them by the two ends.</b> Keep the <a href="reports/self-force-main-note.pdf#page=5&amp;nameddest=equation.2.16" target="_blank" rel="noopener">horizon-admissible</a> solutions for the inner side of the particle, and those admissible at infinity for the outer side. To match $6(n+1)$ conditions we would like $3(n+1)$ independent “basis” functions on each side. The quotation marks are deliberate: so far they are only independent candidates, and we do not yet know that each side really has that many.</li>
+          <li><b>Match the jumps.</b> The field equation fixes, order by order, how $q$ and its radial derivative jump across the worldline. Expanding each side in its “basis” turns the matching into a linear problem $\mathsf M\,c = d$. Here $\mathsf M$ is the matrix built from the basis functions and their radial derivatives at the particle, $c$ collects their coefficients and $d$ collects the jumps.</li>
+          <li><b>Find the kernel.</b> A kernel vector produces no jump at all, so its inner and outer pieces are one and the same solution, regular at both ends. By Result 2 that is a shift or a boost. Fix the CoM and the kernel is trivial.</li>
+          <li><b>Count again.</b> From second order on, the outer side runs short. In a solution admissible at infinity, the coefficient of the highest power of $t$ can only be a combination of two static modes, $s_1^+$ and $s_2^+$. So each new order adds at most two outer solutions, while the matching needs three. With the CoM fixed, $\mathsf M$ becomes a tall rectangular matrix. Its trivial kernel makes it one-to-one, but a tall matrix cannot be onto: for generic jumps there are simply not enough basis functions to go round.</li>
+        </ol>
+        <table class="count-table">
+          <thead>
+            <tr><th>Degree $n$</th><th>Jump conditions<br>$6(n+1)$</th><th>Inner solutions<br>at most $3(n+1)$</th><th>Outer, CoM fixed<br>at most $2n+4$</th><th>Enough?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>12</td><td>6</td><td>6</td><td class="yes">Yes</td></tr>
+            <tr><td>2</td><td>18</td><td>9</td><td>8</td><td class="no">No</td></tr>
+            <tr><td>3</td><td>24</td><td>12</td><td>10</td><td class="no">No</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- ================================================================ 4 -->
+    <h3><span class="sec-n">4</span>The explicit solution</h3>
+
+    <p>So linear it is. Pick a point on the orbit, at radius $r_0$, and start the clock there, $t = 0$. On each side of the particle the gauge vector is</p>
+
+    <div class="eq">$$ q^{\pm}(t, r) = \sum_{j=1}^{3}\Big[A_j^{\pm}\,s_j^{\pm}(r) + B_j^{\pm}\,g_j^{\pm}(t, r)\Big], \qquad g_j^{\pm} = p_j^{\pm} + t\,s_j^{\pm}, \tag{8} $$</div>
+
+    <p>where $s_j^{\pm}$ and $g_j^{\pm}$ are the zeroth- and first-order basis: on each side, three static modes and three modes linear in $t$, each one regular at its own end.</p>
+
+    <details class="curtain spread">
+      <summary><span>The basis, explicitly</span></summary>
+      <div class="curtain-body">
+        <p>All twelve modes, in the notation of <a href="reports/self-force-main-note.pdf#page=18&amp;nameddest=appendix.A" target="_blank" rel="noopener">Appendix A of the main note</a>, with $f = 1 - 2M/r$, $\lambda = \ln f$, $\sigma = \ln(r/M)$, $\hat\sigma = \ln(r/4M)$ and $\varpi = \mathrm{Li}_2(2M/r)$. Open whichever piece you want to see.</p>
+
+        <details class="curtain">
+          <summary><span>Static modes $s_j^{\pm}$</span></summary>
+          <div class="curtain-body">
+            <div class="eq">$$ \mathsf S_- = \begin{pmatrix} u_- &amp; 0 &amp; 0 \\ 0 &amp; b_2^- &amp; 1 \\ 0 &amp; c_2^- &amp; r - M \end{pmatrix}, \qquad \mathsf S_+ = \begin{pmatrix} u_+ &amp; 0 &amp; 0 \\ 0 &amp; b_2^+ &amp; b_3^+ \\ 0 &amp; c_2^+ &amp; c_3^+ \end{pmatrix}, \qquad \mathsf S_{\pm} = \big(s_1^{\pm},\, s_2^{\pm},\, s_3^{\pm}\big). $$</div>
+            <p>The third inner mode is the shift, $s_3^- = q_{\rm T}$. The other entries are</p>
+            <div class="eq">$$ \begin{aligned} u_- &amp;= \frac{r - 2M}{M}, &amp; u_+ &amp;= \frac{2(r - M)}{r} + \frac{r - 2M}{M}\,\lambda, \\[5pt] b_2^- &amp;= \frac{12r^2}{M^2} + \frac{6r}{M} - \frac{8M}{r} + 8\sigma, &amp; b_2^+ &amp;= \frac{2M(r - M)}{r(r - 2M)} + \lambda, \\[5pt] c_2^- &amp;= -\frac{6r^3}{M^2} + \frac{3r^2}{M} - 8r - 12M + 8(r - M)\sigma, &amp; c_2^+ &amp;= 2M + (r - M)\lambda. \end{aligned} $$</div>
+            <details class="curtain">
+              <summary><span>The two long ones, $b_3^+$ and $c_3^+$</span></summary>
+              <div class="curtain-body">
+                <div class="eq">$$ \begin{aligned} b_3^+ &amp;= \frac{6M(r - M)(2r + M) - (6r^2 - 9Mr - 4M^2)\,r\sigma}{M^2(r - 2M)} \\[5pt] &amp;\qquad + \Big[2f + \frac{3r(2r + M)}{M^2} + 4\hat\sigma\Big](\sigma + \lambda) + \Lambda, \\[5pt] c_3^+ &amp;= -\frac{3r(2r + M)}{M} - 5M - \frac{(6r^2 - 3Mr + 4M^2)\,r}{2M^2}\,\lambda \\[5pt] &amp;\qquad + 4\big[(r - M)\hat\sigma - 2M\big](\sigma + \lambda) + (r - M)\Lambda, \\[5pt] \Lambda &amp;= 8\varpi - 8(\sigma - \ln 2)\lambda - 4\sigma\hat\sigma. \end{aligned} $$</div>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <details class="curtain">
+          <summary><span>Linear modes $g_j^{\pm} = p_j^{\pm} + t\,s_j^{\pm}$</span></summary>
+          <div class="curtain-body">
+            <p>Each linear mode grows along a static mode $s_j^{\pm}$, its seed, and the companion $p_j^{\pm}$ carries the rest. Inside the orbit,</p>
+            <div class="eq">$$ p_1^- = \begin{pmatrix} 2Mu_+ \\ \beta_- + \tfrac65 Mb_2^+ \\ \gamma_- + \tfrac65 Mc_2^+ \end{pmatrix}, \qquad p_2^- = \begin{pmatrix} \alpha_{2-} + 36Mu_+ \\ (32\ln 2 - 8)Mb_2^+ + 4Mb_3^+ \\ (32\ln 2 - 8)Mc_2^+ + 4Mc_3^+ \end{pmatrix}, \qquad p_3^- = \begin{pmatrix} 3M - r \\ 2Mb_2^+ \\ 2Mc_2^+ \end{pmatrix}, $$</div>
+            <p>so the third inner mode is the boost, $g_3^- = q_{\rm B}$. Outside the orbit,</p>
+            <div class="eq">$$ p_1^+ = \begin{pmatrix} 0 \\ \beta_+ - \tfrac{1}{30}Mb_2^- - \tfrac{52}{15}M \\ \gamma_+ - \tfrac{1}{30}Mc_2^- - \tfrac{52}{15}M(r - M) \end{pmatrix}, \qquad p_2^+ = \begin{pmatrix} c_2^+ \\ 0 \\ 0 \end{pmatrix}, \qquad p_3^+ = \begin{pmatrix} \alpha_{3+} - \tfrac{45}{2}Mu_- \\ 0 \\ 0 \end{pmatrix}. $$</div>
+            <details class="curtain">
+              <summary><span>The companion functions $\beta_{\pm}$, $\gamma_{\pm}$, $\alpha_{2-}$ and $\alpha_{3+}$</span></summary>
+              <div class="curtain-body">
+                <div class="eq">$$ \begin{aligned} \beta_- &amp;= \frac{2r^3 - 3Mr^2 + 12M^2r - 12M^2(r - 2M)(\sigma + \lambda)}{10M(r - 2M)}, \\[5pt] \gamma_- &amp;= -\frac{2r^3 + 9Mr^2 - 12M^2r + 24M^2(r - M)(\sigma + \lambda)}{20M}, \\[5pt] \beta_+ &amp;= \frac{1}{15Mr(r - 2M)}\Big[\big(6r^4 - 9Mr^3 + 20M^2r^2 + 24M^3r - 32M^4 \\[5pt] &amp;\qquad + 16M^2r(r - 2M)\sigma\big)\lambda + 6r^4 + 3Mr^3 + 40M^2r^2 - 16M^3r \\[5pt] &amp;\qquad + 4M^2(r^2 + 6Mr - 8M^2)\sigma - 32M^2r(r - 2M)\varpi\Big], \\[5pt] \gamma_+ &amp;= -\frac{1}{30M}\Big[\big(6r^3 + 12Mr^2 - 24M^2r - 56M^3 - 32M^2(r - M)\sigma\big)\lambda \\[5pt] &amp;\qquad + 6r^3 + 9Mr^2 - 60M^2r + 64M^2(r - M)\varpi - 8M^2(r + 7M)\sigma\Big], \\[5pt] \alpha_{2-} &amp;= -\frac{6r^2}{M} + 18r + 8M + 8(r - M)\sigma - 36(r - 2M)(\sigma + \lambda), \\[5pt] \alpha_{3+} &amp;= c_3^+ + 3\Big[\Big(\frac{r^3}{M^2} - \frac{3r^2}{2M} + 6r\sigma + 6r - 12M\sigma + 12M - \frac{12M^2}{r}\Big)\lambda \\[5pt] &amp;\qquad + \frac{2r^2}{M} + \frac{13r}{2} + 14M - 12(r - 2M)\varpi + 12M\Big(1 - \frac{M}{r}\Big)\sigma\Big]. \end{aligned} $$</div>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <p>The twelve constants $A_j^{\pm}$ and $B_j^{\pm}$ are fixed by matching the jumps at the particle.</p>
+
+    <details class="curtain spread">
+      <summary><span>Solving for $A$ and $B$</span></summary>
+      <div class="curtain-body">
+        <p>Matching gives twelve linear equations for the twelve constants, and they come out block triangular,</p>
+        <div class="eq">$$ \begin{pmatrix} \mathbb D &amp; \mathbb E \\ 0 &amp; \mathbb D \end{pmatrix}\begin{pmatrix} A \\ B \end{pmatrix} = \begin{pmatrix} Q_0 \\ N_0 \\ K_{1,0} \\ K_{1,1} \end{pmatrix}, \qquad \mathbb D := \begin{pmatrix} -\mathsf S_- &amp; \mathsf S_+ \\ -\mathsf S'_- &amp; \mathsf S'_+ \end{pmatrix}_{r_0}, \qquad \mathbb E := \begin{pmatrix} -\mathsf P_- &amp; \mathsf P_+ \\ -\mathsf P'_- &amp; \mathsf P'_+ \end{pmatrix}_{r_0}, $$</div>
+        <p>where $A = (A^-, A^+)$, $B = (B^-, B^+)$, the columns of $\mathsf P_{\pm}$ are the companions $p_j^{\pm}$, and $Q_0$, $N_0$, $K_{1,0}$, $K_{1,1}$ are the jumps of $q$, $q_{,r}$, $q_{,t}$ and $q_{,tr}$ at the particle. So we solve in two steps, both with the same $6\times 6$ matrix:</p>
+        <div class="steps">
+          <div class="step">
+            <span class="step-n">1</span>
+            <div>
+              <p class="step-label">The rows with a time derivative fix $B$,</p>
+              <div class="eq">$$ B = \mathbb D^{-1}\begin{pmatrix} K_{1,0} \\ K_{1,1} \end{pmatrix}, $$</div>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-n">2</span>
+            <div>
+              <p class="step-label">and the remaining rows then fix $A$,</p>
+              <div class="eq">$$ A = \mathbb D^{-1}\left[\begin{pmatrix} Q_0 \\ N_0 \end{pmatrix} - \mathbb E\,B\right]. $$</div>
+            </div>
+          </div>
+        </div>
+        <p>The matrix $\mathbb D$ never fails us outside the horizon,</p>
+        <div class="eq">$$ \det\mathbb D = \frac{14400\,M^3}{r_0\,(r_0 - 2M)^3} \neq 0 \qquad \text{for all } r_0 &gt; 2M, $$</div>
+        <p>so the linear solution exists at every point of every orbit.</p>
+
+        <details class="curtain">
+          <summary><span>The jumps at the particle</span></summary>
+          <div class="curtain-body">
+            <p>With $\mathcal C_\mu = 4\pi\mu/(3M)$, $Y_{\rm p} = Y_{1m}^*\big(\tfrac{\pi}{2}, \phi_{\rm p}(t)\big)$, $m = \pm 1$, $U = u^r$, and $E$, $L$ the specific energy and angular momentum, evaluated at $r = r_0$ (from <a href="reports/self-force-main-note.pdf#page=8&amp;nameddest=equation.3.24" target="_blank" rel="noopener">Sec. 3 of the main note</a>):</p>
+            <div class="eq">$$ Q = \mathcal C_\mu Y_{\rm p}\begin{pmatrix} rU - imfL \\ -\dfrac{Er}{f} \\ -Er^2 \end{pmatrix}, \qquad N = \mathcal C_\mu Y_{\rm p}\begin{pmatrix} \dfrac{(r - M)U}{r - 2M} - \dfrac{imL(r + 2M)}{r^2} \\ \dfrac{MEr}{(r - 2M)^2} \\ -\dfrac{Er(r - 4M)}{r - 2M} \end{pmatrix}, $$</div>
+            <div class="eq">$$ K_{1,0} = \mathcal C_\mu Y_{\rm p}\begin{pmatrix} -\dfrac{ME}{r} \\ \dfrac{imL}{r} - \dfrac{(r - 3M)U}{r - 2M} \\ imfL - rU \end{pmatrix}, $$</div>
+            <div class="eq">$$ K_{1,1} = \mathcal C_\mu Y_{\rm p}\begin{pmatrix} -\dfrac{ME\big[(6E^2 - 5)r^3 + 11Mr^2 - L^2(2r - 5M)\big]}{r^2(r^2 + L^2)(r - 2M)} \\ \dfrac{MU\big[(6E^2 - 2)r^3 + 3Mr^2 - L^2(5r - 9M)\big]}{r(r^2 + L^2)(r - 2M)^2} - \dfrac{imML}{r^2(r - 2M)} \\ -\dfrac{(r - M)U}{r - 2M} + imL\Big[\dfrac{r - 4M}{r^2} - \dfrac{6MrU^2}{(r^2 + L^2)(r - 2M)}\Big] \end{pmatrix}. $$</div>
+          </div>
+        </details>
+
+        <details class="curtain">
+          <summary><span>$\mathbb D^{-1}$ in closed form</span></summary>
+          <div class="curtain-body">
+            <p>Write $(X^-, X^+) = \mathbb D^{-1}(d, e)$, the map $\mathcal S(d, e)$ of <a href="reports/self-force-main-note.pdf#page=15&amp;nameddest=subsection.6.2" target="_blank" rel="noopener">Sec. 6.2 of the main note</a>. It splits into three $2\times 2$ blocks, with everything evaluated at $r_0$, $f_0 = f(r_0)$ and $\lambda_0 = \ln f_0$.</p>
+            <div class="eq">$$ X_1^- = \frac{r_0^2}{4M^2}\Big[\Big(\lambda_0 + \frac{2M(r_0 + M)}{r_0^2}\Big)d_a - Mu_+e_a\Big], \qquad X_1^+ = \frac{r_0^2}{4M^2}\big[d_a - (r_0 - 2M)\,e_a\big], $$</div>
+            <div class="eq">$$ \begin{aligned} \delta &amp;= d_b - e_c, \qquad \delta' = e_b + \frac{2(Me_c - d_c)}{r_0^2f_0} + \frac{2d_b}{r_0}, \\[5pt] X_2^- &amp;= \frac{(r_0 - 2M)^2}{1800\,r_0^2}\Big[\Big(\frac{30r_0\lambda_0}{M} + \frac{60(r_0^2 - 3Mr_0 + M^2)}{(r_0 - 2M)^2}\Big)\delta - \frac{15r_0^2u_+}{r_0 - 2M}\,\delta'\Big], \\[5pt] X_3^+ &amp;= \frac{(r_0 - 2M)^2}{1800\,Mr_0^2}\big[60r_0\,\delta - 30r_0^2\,\delta'\big], \end{aligned} $$</div>
+            <div class="eq">$$ \begin{aligned} \chi &amp;= d_c + X_2^-c_2^- - X_3^+c_3^+, \qquad \chi' = e_c + X_2^-(c_2^-)' - X_3^+(c_3^+)', \\[5pt] X_3^- &amp;= -\frac{r_0(r_0 - 2M)}{2M^3}\Big[\Big(\lambda_0 + \frac{2M(r_0 - M)}{r_0(r_0 - 2M)}\Big)\chi - c_2^+\chi'\Big], \\[5pt] X_2^+ &amp;= -\frac{r_0(r_0 - 2M)}{2M^3}\big[\chi - (r_0 - M)\,\chi'\big]. \end{aligned} $$</div>
+          </div>
+        </details>
+
+        <details class="curtain">
+          <summary><span>Leading coefficients at large radius</span></summary>
+          <div class="curtain-body">
+            <p>On a hyperbolic orbit, with $x = 1/r_0$, $p = \sqrt{E^2 - 1}$, and hats meaning division by $\mathcal C_\mu Y_{\rm p}$,</p>
+            <div class="eq">$$ \begin{aligned} \hat B_1^- &amp;\simeq EM^2(2p^2 + 1)\,x^2, &amp; \hat B_2^- &amp;\simeq \frac{M^3p(3p^2 + 5)}{45}\,x^3, &amp; \hat B_3^- &amp;\simeq -p, \\[5pt] \hat B_1^+ &amp;\simeq \frac{3Ep^2}{2M}\,x^{-1}, &amp; \hat B_2^+ &amp;\simeq \frac{3p^3}{5M^2}\,x^{-2}, &amp; \hat B_3^+ &amp;\simeq \frac{p(3p^2 + 2)}{30}, \\[5pt] \hat A_1^- &amp;\simeq \frac{2M^2p(3p^2 + 5)}{3}\,x, &amp; \hat A_2^- &amp;\simeq \frac{EM^3(7 - 6p^2)}{180}\,x^2, &amp; \hat A_3^- &amp;\simeq E\,x^{-1}, \\[5pt] \hat A_1^+ &amp;\simeq \frac{p(3p^2 - 5)}{10M}\,x^{-2}, &amp; \hat A_2^+ &amp;\simeq -\frac{E(3p^2 + 1)}{10M}\,x^{-2}, &amp; \hat A_3^+ &amp;\simeq \frac{E(3p^2 - 7)}{60}\,x^{-1}. \end{aligned} $$</div>
+            <p>Higher orders, and the marginally bound case $E = 1$, are in <a href="reports/self-force-main-note.pdf#page=24&amp;nameddest=appendix.C" target="_blank" rel="noopener">Appendix C of the main note</a>.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <div class="check-box">
+      <p class="callout-label">A sanity check we never put in</p>
+      <p>Near the black hole the interior solution is dominated by its two frame modes. Summed over $m = \pm1$ at large radius, it becomes a dipole along the particle's direction with $q^- \simeq (\mu/M)\big(E\,r_0\,q_{\rm T} - p\,q_{\rm B}\big)$, a shift plus a boost (<a href="reports/self-force-main-note.pdf#page=17&amp;nameddest=subsection.6.5" target="_blank" rel="noopener">Sec. 6.5 of the main note</a>). Read as a motion of the black hole, they put it at $\boldsymbol X_{\rm BH}$ with velocity $\boldsymbol V_{\rm BH}$ such that</p>
+      <div class="eq">$$ M\boldsymbol X_{\rm BH} + \mu E\,\boldsymbol x_{\rm p} = 0, \qquad M\boldsymbol V_{\rm BH} + \mu E\,\boldsymbol v_{\rm p} = 0, $$</div>
+      <p>exactly the centre-of-mass relations for two bodies with energies $M$ and $\mu E$. Nobody told the calculation this. The frame was fixed by a condition at infinity, and the black hole's position and velocity simply fell out of the matching.</p>
+    </div>
+
+    <p>Feed $q^{\pm}$ back into the metric and the dipole itself comes out, also linear in time,</p>
+
+    <div class="eq">$$ \begin{gathered} \mu\,\boldsymbol H^{\pm}(t, r) = \sum_{j=1}^{3}\Big[A_j^{\pm}\boldsymbol F_j^{\pm}(r) + B_j^{\pm}\big(\boldsymbol G_j^{\pm}(r) + t\,\boldsymbol F_j^{\pm}(r)\big)\Big], \\ \boldsymbol F_j^{\pm} = \Pi_0\,s_j^{\pm}, \qquad \boldsymbol G_j^{\pm} = \Pi_0\,p_j^{\pm} + \Pi_1\,s_j^{\pm}, \end{gathered} \tag{9} $$</div>
+
+    <p>with the same twelve coefficients. Here $\Pi_0$ and $\Pi_1$ turn a gauge vector into the six metric amplitudes $H_1, \dots, H_6$, and all seventy-two metric functions are listed in <a href="reports/self-force-main-note.pdf#page=20&amp;nameddest=appendix.B" target="_blank" rel="noopener">Appendix B of the main note</a>.</p>
+
+    <!-- ================================================================ 5 -->
+    <h3><span class="sec-n">5</span>Future work</h3>
+
+    <p>This project is part of a collaboration with Prof. Niels Warburton, Dr. Oliver Long and others, and we expect to write it up as a paper in 2027.</p>
+
+    <p>The next piece is initial data. To start a numerical evolution, the code needs the metric on the initial slice, which my solution provides, and also its time derivative there. That second part is where the polynomial ansatz runs out of road. The time derivative of the metric needs one more time derivative of the gauge vector,</p>
+
+    <div class="eq">$$ \mu\,\partial_t\boldsymbol H\big|_{t=0} = \Pi_0\,q_1 + \Pi_1\,q_2, $$</div>
+
+    <p>and the linear solution sets $q_2 = 0$. The quadratic piece it leaves out is small for the gauge vector but not for the metric: $\Pi_1$ multiplies it by $r$, so the error in $\partial_t\boldsymbol H$ is as large as the source terms themselves. Fixing that would take the quadratic solution, which by Result 3 does not exist. So the ansatz itself has to change. Logarithms in $t$ are the natural suspects, since on a hyperbolic orbit $r_{\rm p}(t)$ itself contains $\ln|t|$. This is next on my list once the PhD applications are done.</p>
+
+    <h3>Acknowledgements</h3>
+
+    <p>I am very grateful to Prof. Leor Barack for introducing me to this project, and for his guidance and insightful suggestions in our weekly meetings.</p>
+
+    <h3 id="notes">How to read my notes</h3>
+
+    <p>Start with the main note. The two supplements hold the proofs that the main note only states.</p>
+
+    <div class="notes-list">
+      <div class="note-row">
+        <a class="note-btn is-main" href="reports/self-force-main-note.pdf" target="_blank" rel="noopener"><span class="note-kind">Main note</span><span class="note-title">The linear-in-time dipole</span><span class="note-meta">PDF · 27 pages ↗</span></a>
+        <p>The main story. It shows how I construct the solution, why it is linear in time, and what it is explicitly: the twelve basis modes, the matching coefficients and the metric, all in closed form.</p>
+      </div>
+      <div class="note-row">
+        <a class="note-btn" href="reports/self-force-note-I-uniqueness.pdf" target="_blank" rel="noopener"><span class="note-kind">Supplemental Note I</span><span class="note-title">Uniqueness and the missing modes</span><span class="note-meta">PDF · 6 pages ↗</span></a>
+        <p>The proofs of <a href="#result-2">Results 2 and 3</a>. The only polynomial gauge vectors regular at both ends are the shift and the boost, and from second order on the outer side has too few solutions to match the particle.</p>
+      </div>
+      <div class="note-row">
+        <a class="note-btn" href="reports/self-force-note-II-com-modes.pdf" target="_blank" rel="noopener"><span class="note-kind">Supplemental Note II</span><span class="note-title">The modes that move the centre of mass</span><span class="note-meta">PDF · 17 pages ↗</span></a>
+        <p>The proof of <a href="#result-1">Result 1</a>. It shows why only the even-parity dipole can move the centre of mass, and constructs explicitly the shift and the boost, the only two vacuum solutions that do.</p>
+      </div>
+    </div>
+
   </div>
 
   <footer class="footer">
@@ -62,5 +365,180 @@ window.MathJax = {
   </footer>
 
 </div>
+
+<script>
+{
+  const C = {ink: "#1a1814", soft: "#3a342c", mute: "#6b6358", rule: "#c8bfae", ox: "#6e1a1f", paper: "#f4efe6"};
+  const SERIF = '"EB Garamond", Georgia, serif';
+  const PI = Math.PI, TAU = 2 * Math.PI;
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function fit(cv, aspect) {
+    const dpr = window.devicePixelRatio || 1, w = cv.clientWidth, h = Math.round(w * aspect);
+    cv.style.height = h + "px"; cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    const ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return {ctx, w, h};
+  }
+  function onScreen(el, cb) {
+    if (!("IntersectionObserver" in window)) { cb(true); return; }
+    new IntersectionObserver(es => cb(es[0].isIntersecting), {rootMargin: "80px"}).observe(el);
+  }
+  function disc(ctx, x, y, r, fill, ring) {
+    ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fillStyle = fill; ctx.fill();
+    if (ring) { ctx.lineWidth = 1.2; ctx.strokeStyle = C.paper; ctx.stroke(); }
+  }
+  // polyline that brightens from its tail to its head
+  function trail(ctx, pts, map, col, alpha, width) {
+    const n = pts.length; if (n < 2) return;
+    const chunk = Math.max(1, Math.ceil(n / 48));
+    ctx.lineWidth = width; ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.strokeStyle = col;
+    for (let i = 0; i < n - 1; i += chunk) {
+      const j = Math.min(n - 1, i + chunk);
+      ctx.globalAlpha = alpha * (0.05 + 0.95 * j / (n - 1));
+      ctx.beginPath();
+      let [x, y] = map(pts[i]); ctx.moveTo(x, y);
+      for (let k = i + 1; k <= j; k++) { [x, y] = map(pts[k]); ctx.lineTo(x, y); }
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+  function animate(cv, advance, draw) {
+    let visible = true, last = null;
+    onScreen(cv, v => { visible = v; last = null; });
+    const loop = ts => {
+      if (visible) { if (last !== null) { advance(Math.min(ts - last, 50) / 1000); draw(); } last = ts; }
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  }
+  // Schwarzschild geodesics in Darwin's form, r = p/(1 + e cos chi), units M = 1
+  const dtdchi = (c, p, e) => p * p / ((p - 2 - 2 * e * Math.cos(c)) * (1 + e * Math.cos(c)) ** 2) * Math.sqrt(((p - 2) ** 2 - 4 * e * e) / (p - 6 - 2 * e * Math.cos(c)));
+  const dphidchi = (c, p, e) => Math.sqrt(p / (p - 6 - 2 * e * Math.cos(c)));
+
+  /* ---- EMRI: geodesic motion plus leading-order (Peters) radiation reaction with an exaggerated
+          mass ratio, then a plunge once the orbit reaches the separatrix p = 6 + 2e ---- */
+  {
+    const cv = document.getElementById("fig-emri");
+    const NU = 0.1, P0 = 12.5, E0 = 0.5, GAP = 0.4, SPEED = 230, VIEW = 26.5, WAVE = 16;
+    let G, S;
+    function reset() { S = {p: P0, e: E0, chi: 0, phi: 0, r: P0 / (1 + E0), t: 0, last: -1e9, pts: [], rings: [], half: 0, mode: "orbit", E: 0, L: 0, rd: 0, hold: 0}; }
+    const pos = () => [S.r * Math.cos(S.phi), S.r * Math.sin(S.phi)];
+    function plunge() {
+      const p = S.p, e = S.e, f = 1 - 2 / S.r;
+      S.E = Math.sqrt(((p - 2) ** 2 - 4 * e * e) / (p * (p - 3 - e * e)));
+      S.L = 0.99 * p / Math.sqrt(p - 3 - e * e);
+      S.rd = (Math.sin(S.chi) >= 0 ? 1 : -1) * Math.sqrt(Math.max(S.E * S.E - f * (1 + S.L * S.L / (S.r * S.r)), 0));
+      S.mode = "plunge";
+    }
+    function step(budget) {                       // returns the coordinate time used
+      if (S.mode === "orbit") {
+        const tc = dtdchi(S.chi, S.p, S.e), dchi = Math.min(0.02, budget / tc), dt = dchi * tc;
+        S.phi += dchi * dphidchi(S.chi, S.p, S.e); S.chi += dchi;
+        const w = Math.pow(1 - S.e * S.e, 1.5);
+        S.p -= 64 / 5 * NU * Math.pow(S.p, -3) * w * (1 + 7 * S.e * S.e / 8) * dt;
+        S.e -= 304 / 15 * NU * S.e * Math.pow(S.p, -4) * w * (1 + 121 * S.e * S.e / 304) * dt;
+        S.r = S.p / (1 + S.e * Math.cos(S.chi));
+        if (S.p - 6 - 2 * S.e < GAP) plunge();
+        return dt;
+      }
+      const f = 1 - 2 / S.r, dtau = Math.min(0.05, budget * f / S.E);       // geodesic in proper time
+      const acc = r => -1 / (r * r) + S.L * S.L / (r * r * r) - 3 * S.L * S.L / (r * r * r * r);
+      S.rd += 0.5 * dtau * acc(S.r); S.r += dtau * S.rd; S.rd += 0.5 * dtau * acc(S.r);
+      S.phi += S.L / (S.r * S.r) * dtau;
+      if (S.r < 2.1) { S.mode = "hold"; S.hold = 1.4; }
+      return S.E / f * dtau;
+    }
+    function advance(sec) {
+      S.rings = S.rings.map(R => R + WAVE * sec).filter(R => R < G.rmax);
+      if (S.mode === "hold") { S.hold -= sec; if (S.hold <= 0) reset(); return; }
+      let left = sec * SPEED, guard = 0;
+      while (left > 1e-9 && S.mode !== "hold" && guard++ < 20000) {
+        const dt = step(left); left -= dt; S.t += dt;
+        if (S.t - S.last >= 1.5) { S.pts.push(pos()); S.last = S.t; if (S.pts.length > 520) S.pts.shift(); }
+        const half = Math.floor(S.phi / PI);       // one wave crest per half turn: GWs at twice the orbital frequency
+        if (half > S.half) { S.half = half; S.rings.push(S.r); }
+      }
+    }
+    function draw() {
+      const {ctx, w, h, s} = G, cx = w / 2, cy = h / 2;
+      ctx.clearRect(0, 0, w, h);
+      ctx.lineWidth = 1; ctx.strokeStyle = C.ox;
+      for (const R of S.rings) { ctx.globalAlpha = 0.3 * (1 - R / G.rmax); ctx.beginPath(); ctx.arc(cx, cy, R * s, 0, TAU); ctx.stroke(); }
+      ctx.globalAlpha = 1;
+      trail(ctx, S.pts, ([x, y]) => [cx + s * x, cy - s * y], C.soft, 0.7, 1.2);
+      disc(ctx, cx, cy, 2 * s, C.ink);
+      if (S.mode !== "hold") { const [x, y] = pos(); disc(ctx, cx + s * x, cy - s * y, 4.2, C.ox, true); }
+    }
+    function size() {
+      G = fit(cv, 0.52);
+      G.s = (Math.min(G.w, G.h) / 2 - 8) / VIEW;
+      G.rmax = Math.hypot(G.w, G.h) / 2 / G.s;
+      draw();
+    }
+    reset();
+    window.addEventListener("resize", size);
+    if (reduce) { G = {rmax: 99}; while (S.t < 2600) advance(0.05); S.rings = []; size(); }
+    else { size(); animate(cv, advance, draw); }
+  }
+
+  /* ---- Scattering just above the capture threshold (zoom-whirl): an unbound geodesic with
+          p = 6 + 2e + d, e = 1.3, d = 0.073052, so E = 1.0456, L = 4.3457 M and the periapsis sits at 3.77 M,
+          just outside the unstable circular orbit. Total deflection 755 degrees: two whirls, then out ---- */
+  {
+    const cv = document.getElementById("fig-scatter");
+    const e = 1.3, d = 0.073052, REDGE = 34, N = 3000, PASS = 6.5, HOLD = 1.6;
+    const p = 6 + 2 * e + d, a = Math.sqrt(d / (4 * e));
+    const uE = Math.asinh(Math.sin(Math.acos((p / REDGE - 1) / e) / 2) / a), hu = 2 * uE / N;
+    // sin(chi/2) = a sinh(u) removes the near-singularity of the whirl at periapsis
+    const rates = u => {
+      const sn = a * Math.sinh(u), c = 1 - 2 * sn * sn, den = d + 4 * e * sn * sn, dchi = 2 * a * Math.cosh(u) / Math.sqrt(1 - sn * sn);
+      return [p * p / ((p - 2 - 2 * e * c) * (1 + e * c) ** 2) * Math.sqrt(((p - 2) ** 2 - 4 * e * e) / den) * dchi, Math.sqrt(p / den) * dchi];
+    };
+    const T = new Float64Array(N + 1), X = new Float64Array(N + 1), Y = new Float64Array(N + 1);
+    let ph = 0, x0 = -2, x1 = 2, y0 = -2, y1 = 2;
+    for (let i = 0; i <= N; i++) {
+      const u = -uE + i * hu, sn = a * Math.sinh(u), r = p / (1 + e * (1 - 2 * sn * sn));
+      if (i) { const A = rates(u - hu), B = rates(u - hu / 2), Cc = rates(u); T[i] = T[i - 1] + hu / 6 * (A[0] + 4 * B[0] + Cc[0]); ph += hu / 6 * (A[1] + 4 * B[1] + Cc[1]); }
+      X[i] = r * Math.cos(ph + PI); Y[i] = r * Math.sin(ph + PI);     // enters from the left
+      x0 = Math.min(x0, X[i]); x1 = Math.max(x1, X[i]); y0 = Math.min(y0, Y[i]); y1 = Math.max(y1, Y[i]);
+    }
+    const speed = T[N] / PASS;
+    let G, tt = 0, hold = 0;
+    const idx = t => { let lo = 0, hi = N; while (hi - lo > 1) { const mid = (lo + hi) >> 1; if (T[mid] <= t) lo = mid; else hi = mid; } return lo; };
+    function draw() {
+      const {ctx, w, h: H} = G, pad = 16;
+      const s = Math.min((w - 2 * pad) / (x1 - x0), (H - 2 * pad) / (y1 - y0));
+      const ox = (w - s * (x1 + x0)) / 2, oy = (H + s * (y1 + y0)) / 2;
+      const map = ([x, y]) => [ox + s * x, oy - s * y];
+      ctx.clearRect(0, 0, w, H);
+      ctx.setLineDash([2, 5]); ctx.lineWidth = 1; ctx.strokeStyle = C.rule; ctx.globalAlpha = 0.8; ctx.beginPath();
+      for (let i = 0; i <= N; i += 6) { const [u, v] = map([X[i], Y[i]]); if (i) ctx.lineTo(u, v); else ctx.moveTo(u, v); }
+      ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+      const fs = Math.max(12, Math.min(15, w / 42));
+      ctx.font = `italic ${fs}px ${SERIF}`; ctx.fillStyle = C.mute; ctx.textBaseline = "middle";
+      const [sx, sy] = map([X[0], Y[0]]), [ex, ey] = map([X[N], Y[N]]);
+      ctx.textAlign = "left"; ctx.fillText("in from ∞", sx + 2, sy - 14);
+      ctx.textAlign = "right"; ctx.fillText("out to ∞", ex - 2, ey + 18);
+      const k = idx(Math.min(tt, T[N])), pts = [];
+      for (let i = 0; i <= k; i += 3) pts.push([X[i], Y[i]]);
+      pts.push([X[k], Y[k]]);
+      trail(ctx, pts, map, C.soft, 0.85, 1.4);
+      const [bx, by] = map([0, 0]);
+      disc(ctx, bx, by, 2 * s, C.ink);
+      const [px, py] = map([X[k], Y[k]]);
+      disc(ctx, px, py, 4.2, C.ox, true);
+    }
+    function advance(sec) {
+      if (tt >= T[N]) { hold += sec; if (hold > HOLD) { tt = 0; hold = 0; } return; }
+      tt += sec * speed;
+    }
+    const ASPECT = Math.min(0.56, Math.max(0.36, (y1 - y0) / (x1 - x0) + 0.13));   // frame fitted to the orbit
+    function size() { G = fit(cv, ASPECT); draw(); }
+    window.addEventListener("resize", size);
+    if (reduce) { tt = 0.62 * T[N]; size(); }
+    else { size(); animate(cv, advance, draw); }
+  }
+}
+</script>
 </body>
 </html>

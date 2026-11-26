@@ -38,19 +38,11 @@
     <!-- ============ PROJECT 1 ============ -->
     <a class="card" href="projects/mean-motion-resonance.html">
       <div class="card-figure">
-        <!-- two orbits lined up with the black hole -->
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="100" cy="100" r="66" fill="none" stroke="#3a342c" stroke-width="0.7" stroke-dasharray="2 3" opacity=".6"/>
-          <ellipse cx="87.4" cy="100" rx="42" ry="40" fill="none" stroke="#3a342c" stroke-width="0.9"/>
-          <line x1="100" y1="100" x2="178" y2="100" stroke="#6e1a1f" stroke-width="0.9"/>
-          <circle cx="100" cy="100" r="9" fill="#1a1814"/>
-          <circle cx="129.4" cy="100" r="4" fill="#1a1814"/>
-          <circle cx="166" cy="100" r="5" fill="#6e1a1f"/>
-          <text x="150" y="160" font-family="EB Garamond" font-style="italic" font-size="16" fill="#6e1a1f">2 : 1</text>
-        </svg>
+        <!-- two bodies in the 2:1 resonance of the MMR report, animated -->
+        <canvas id="card-mmr" role="img" aria-label="Animation: two small bodies orbit a black hole in a 2:1 mean-motion resonance and line up with it again and again"></canvas>
       </div>
       <div class="card-body">
-        <span class="card-kicker">Research Assistant · 2026 – present</span>
+        <span class="card-kicker">Research Assistant · 10.2026 – present</span>
         <h3 class="card-title">Relativistic Mean-Motion Resonance</h3>
         <div class="card-meta">Tsinghua University — Prof. Huan Yang</div>
         <p class="card-desc">How two small bodies orbiting a black hole lock into resonance under gravitational self-force, and how their coupling can be read off the gravitational waves they emit.</p>
@@ -61,25 +53,14 @@
     <!-- ============ PROJECT 2 ============ -->
     <a class="card" href="projects/self-force.html">
       <div class="card-figure">
-        <!-- scattering trajectory past a BH -->
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="100" cy="110" r="22" fill="#1a1814"/>
-          <circle cx="100" cy="110" r="32" fill="none" stroke="#6e1a1f" stroke-width="0.6" stroke-dasharray="2 3" opacity=".5"/>
-          <!-- scattering hyperbola -->
-          <path d="M 10 50 Q 80 80, 100 110 T 190 170" fill="none" stroke="#3a342c" stroke-width="1"/>
-          <!-- arrow -->
-          <polygon points="185,168 190,170 185,173" fill="#3a342c"/>
-          <!-- small mass -->
-          <circle cx="50" cy="68" r="3" fill="#6e1a1f"/>
-          <text x="25" y="55" font-family="EB Garamond" font-style="italic" font-size="12" fill="#3a342c">m</text>
-          <text x="135" y="115" font-family="EB Garamond" font-style="italic" font-size="12" fill="#f4efe6">M</text>
-        </svg>
+        <!-- zoom-whirl scattering orbit, animated -->
+        <canvas id="card-sf" role="img" aria-label="Animation: a small body falls in from far away, whirls around a black hole twice and escapes"></canvas>
       </div>
       <div class="card-body">
-        <span class="card-kicker">Research Project · 2026</span>
-        <h3 class="card-title">Self-Force &amp; Gauge Dependence in Black-Hole Scattering</h3>
+        <span class="card-kicker">Research Project · 06.2026 – 10.2026</span>
+        <h3 class="card-title">Metric Perturbations of Scattering Orbits with Centre-of-Mass Control</h3>
         <div class="card-meta">University of Southampton — Prof. Leor Barack</div>
-        <p class="card-desc">Black-hole perturbation theory for scattering orbits: extending gauge/frame-dependence calculations (Barack et al. 2019, §V.C) from bound to general scattering geodesics.</p>
+        <p class="card-desc">How to build the metric perturbation of a body scattering off a black hole with its centre of mass under control, and why at large radius the answer is linear in time.</p>
         <span class="card-cta">Read more →</span>
       </div>
     </a>
@@ -109,7 +90,7 @@
         </svg>
       </div>
       <div class="card-body">
-        <span class="card-kicker">Internship · 2025</span>
+        <span class="card-kicker">Internship · 06.2025 – 09.2025</span>
         <h3 class="card-title">Fourier-Domain Quadratic Statistics in PTAs</h3>
         <div class="card-meta">Max Planck Institute for Gravitational Physics (AEI) — Dr. Rutger van Haasteren</div>
         <p class="card-desc">Extending the calculation of p-values for quadratic statistics in pulsar timing arrays into the Fourier domain — derivation, dimension reduction, and a fully Fourier-native Python pipeline.</p>
@@ -147,7 +128,7 @@
         </svg>
       </div>
       <div class="card-body">
-        <span class="card-kicker">Summer Research · 2024</span>
+        <span class="card-kicker">Summer Research · 07.2024 – 09.2024</span>
         <h3 class="card-title">Diamagnetic Levitation</h3>
         <div class="card-meta">University College London — Prof. Peter Barker</div>
         <p class="card-desc">A computational study of the optimal shape of a diamagnetic body levitating above a rotationally symmetric permanent magnet, with stability and oscillation analysis.</p>
@@ -163,5 +144,145 @@
   </footer>
 
 </div>
+<script>
+{
+  const C = {ink: "#1a1814", soft: "#3a342c", mute: "#6b6358", rule: "#c8bfae", ox: "#6e1a1f", gold: "#8a6a2e", paper: "#f4efe6"};
+  const PI = Math.PI, TAU = 2 * Math.PI;
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function fitBox(cv) {
+    const dpr = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    const ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return {ctx, w, h};
+  }
+  function disc(ctx, x, y, r, fill, ring) {
+    ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fillStyle = fill; ctx.fill();
+    if (ring) { ctx.lineWidth = 1.1; ctx.strokeStyle = C.paper; ctx.stroke(); }
+  }
+  function trail(ctx, pts, col, alpha, width) {         // brightens from tail to head
+    const n = pts.length; if (n < 2) return;
+    const chunk = Math.max(1, Math.ceil(n / 40));
+    ctx.lineWidth = width; ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.strokeStyle = col;
+    for (let i = 0; i < n - 1; i += chunk) {
+      const j = Math.min(n - 1, i + chunk);
+      ctx.globalAlpha = alpha * (0.04 + 0.96 * j / (n - 1));
+      ctx.beginPath(); ctx.moveTo(pts[i][0], pts[i][1]);
+      for (let k = i + 1; k <= j; k++) ctx.lineTo(pts[k][0], pts[k][1]);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+  function animate(cv, advance, draw) {
+    let visible = true, last = null;
+    if ("IntersectionObserver" in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; last = null; }, {rootMargin: "60px"}).observe(cv);
+    const loop = ts => {
+      if (visible) { if (last !== null) { advance(Math.min(ts - last, 50) / 1000); draw(); } last = ts; }
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  }
+  // Schwarzschild geodesics in Darwin's form r = p/(1 + e cos chi), units M = 1
+  const dtdchi = (c, p, e) => p * p / ((p - 2 - 2 * e * Math.cos(c)) * (1 + e * Math.cos(c)) ** 2) * Math.sqrt(((p - 2) ** 2 - 4 * e * e) / (p - 6 - 2 * e * Math.cos(c)));
+  const dphidchi = (c, p, e) => Math.sqrt(p / (p - 6 - 2 * e * Math.cos(c)));
+  function lookup(T, t) { let lo = 0, hi = T.length - 1; while (hi - lo > 1) { const m = (lo + hi) >> 1; if (T[m] <= t) lo = m; else hi = m; } return lo; }
+
+  /* ---- Mean-motion resonance: the 2:1 example of the MMR report. Inner body on the geodesic p = 10M, e = 0.1,
+          outer body on the circular orbit where 2(Omega_phi1 - Omega_phi2) = Omega_r1 (r2 = 12.9719M),
+          so every line-up happens at the inner body's periapsis ---- */
+  {
+    const cv = document.getElementById("card-mmr");
+    const p = 10, e = 0.1, N = 1200, SPEED = 150, h = TAU / N;
+    const T = new Float64Array(N + 1), PH = new Float64Array(N + 1);
+    for (let i = 1; i <= N; i++) {
+      const a = (i - 1) * h, m = a + h / 2, b = a + h;
+      T[i] = T[i - 1] + h / 6 * (dtdchi(a, p, e) + 4 * dtdchi(m, p, e) + dtdchi(b, p, e));
+      PH[i] = PH[i - 1] + h / 6 * (dphidchi(a, p, e) + 4 * dphidchi(m, p, e) + dphidchi(b, p, e));
+    }
+    const Tr = T[N], dPhi = PH[N], Wr = TAU / Tr, W2 = dPhi / Tr - Wr / 2, R2 = Math.pow(W2, -2 / 3);
+    function inner(t) {
+      const n = Math.floor(t / Tr), tl = t - n * Tr, k = Math.min(lookup(T, tl), N - 1), f = (tl - T[k]) / (T[k + 1] - T[k]);
+      const chi = (k + f) * h, phi = n * dPhi + PH[k] + f * (PH[k + 1] - PH[k]);
+      return [p / (1 + e * Math.cos(chi)), phi];
+    }
+    const S = {t: 0, conj: 0, flash: 0, flashAng: 0};
+    let G;
+    function advance(sec) {
+      S.t += sec * SPEED; S.flash = Math.max(0, S.flash - sec * 0.9);
+      const rel = inner(S.t)[1] - W2 * S.t, k = Math.floor(rel / TAU + 1e-9);
+      if (k > S.conj) { S.conj = k; S.flash = 1; S.flashAng = W2 * S.t; }
+    }
+    function draw() {
+      const {ctx, w, h: H} = G, cx = w / 2, cy = H / 2, s = (Math.min(w, H) / 2 - 8) / (R2 * 1.1);
+      const at = (r, ph) => [cx + s * r * Math.cos(ph), cy - s * r * Math.sin(ph)];
+      ctx.clearRect(0, 0, w, H);
+      ctx.setLineDash([2, 4]); ctx.strokeStyle = C.rule; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.arc(cx, cy, s * R2, 0, TAU); ctx.stroke(); ctx.setLineDash([]);
+      if (S.flash > 0) {
+        ctx.strokeStyle = "rgba(110,26,31," + (0.75 * S.flash).toFixed(3) + ")"; ctx.lineWidth = 1.4;
+        const [fx, fy] = at(R2 * 1.08, S.flashAng);
+        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(fx, fy); ctx.stroke();
+      }
+      const pin = [], pout = [];
+      for (let i = 0; i <= 60; i++) { const tt = S.t - 300 * (1 - i / 60), [r, ph] = inner(Math.max(tt, -1e9)); pin.push(at(r, ph)); }
+      for (let i = 0; i <= 30; i++) { const tt = S.t - 160 * (1 - i / 30); pout.push(at(R2, W2 * tt)); }
+      trail(ctx, pin, C.soft, 0.75, 1.2);
+      trail(ctx, pout, C.gold, 0.8, 1.2);
+      disc(ctx, cx, cy, s * 2, C.ink);
+      const [r1, p1] = inner(S.t), [x1, y1] = at(r1, p1), [x2, y2] = at(R2, W2 * S.t);
+      disc(ctx, x1, y1, 4, C.ink, true);
+      disc(ctx, x2, y2, 4.6, C.gold, true);
+    }
+    function size() { G = fitBox(cv); draw(); }
+    window.addEventListener("resize", size);
+    S.t = 6 * Tr - 120; S.conj = Math.floor((inner(S.t)[1] - W2 * S.t) / TAU + 1e-9);
+    if (reduce) { S.t = 6 * Tr; S.flash = 1; S.flashAng = W2 * S.t; size(); }
+    else { size(); animate(cv, advance, draw); }
+  }
+
+  /* ---- Black-hole scattering: an unbound geodesic just above the capture threshold (zoom-whirl).
+          p = 6 + 2e + d with e = 1.3, d = 0.046766: E = 1.0458, L = 4.3469 M, periapsis 3.76 M,
+          total deflection 820 degrees, i.e. two whirls before it escapes ---- */
+  {
+    const cv = document.getElementById("card-sf");
+    const e = 1.3, d = 0.046766, REDGE = 19, N = 2400, PASS = 4.6, HOLD = 1.3, VIEW = 13;
+    const p = 6 + 2 * e + d, a = Math.sqrt(d / (4 * e));
+    const uE = Math.asinh(Math.sin(Math.acos((p / REDGE - 1) / e) / 2) / a), hu = 2 * uE / N;
+    // sin(chi/2) = a sinh(u) removes the near-singularity of the whirl at periapsis
+    const rates = u => {
+      const sn = a * Math.sinh(u), c = 1 - 2 * sn * sn, den = d + 4 * e * sn * sn, dchi = 2 * a * Math.cosh(u) / Math.sqrt(1 - sn * sn);
+      return [p * p / ((p - 2 - 2 * e * c) * (1 + e * c) ** 2) * Math.sqrt(((p - 2) ** 2 - 4 * e * e) / den) * dchi, Math.sqrt(p / den) * dchi];
+    };
+    const T = new Float64Array(N + 1), X = new Float64Array(N + 1), Y = new Float64Array(N + 1);
+    let ph = 0;
+    for (let i = 0; i <= N; i++) {
+      const u = -uE + i * hu, sn = a * Math.sinh(u), r = p / (1 + e * (1 - 2 * sn * sn));
+      if (i) { const A = rates(u - hu), B = rates(u - hu / 2), Cc = rates(u); T[i] = T[i - 1] + hu / 6 * (A[0] + 4 * B[0] + Cc[0]); ph += hu / 6 * (A[1] + 4 * B[1] + Cc[1]); }
+      X[i] = r * Math.cos(ph + PI); Y[i] = r * Math.sin(ph + PI);     // enters from the left
+    }
+    const speed = T[N] / PASS;
+    let G, tt = 0, hold = 0;
+    function advance(sec) {
+      if (tt >= T[N]) { hold += sec; if (hold > HOLD) { tt = 0; hold = 0; } return; }
+      tt += sec * speed;
+    }
+    function draw() {
+      const {ctx, w, h: H} = G, cx = w / 2, cy = H / 2, s = Math.min(w, H) / 2 / VIEW;
+      const map = i => [cx + s * X[i], cy - s * Y[i]];
+      ctx.clearRect(0, 0, w, H);
+      const k = lookup(T, Math.min(tt, T[N])), pts = [];
+      for (let i = 0; i <= k; i += 3) pts.push(map(i));
+      pts.push(map(k));
+      const fadeOut = tt >= T[N] ? Math.max(0, 1 - hold / HOLD) : 1;
+      trail(ctx, pts, C.soft, 0.85 * fadeOut, 1.3);
+      disc(ctx, cx, cy, s * 2, C.ink);
+      if (tt < T[N]) { const [x, y] = map(k); disc(ctx, x, y, 4, C.ox, true); }
+    }
+    function size() { G = fitBox(cv); draw(); }
+    window.addEventListener("resize", size);
+    if (reduce) { tt = 0.999 * T[N]; size(); }
+    else { size(); animate(cv, advance, draw); }
+  }
+}
+</script>
 </body>
 </html>
