@@ -3,13 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Self-Force in Black-Hole Scattering — Hanzhi Zhang</title>
+<title>Self-Force and Gauge Dependence in Black-Hole Scattering — Hanzhi Zhang</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
 <script>
-window.MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] } };
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] }
+};
 </script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -29,27 +31,29 @@ window.MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] } };
   <a href="../projects.html" class="back-link">All projects</a>
 
   <header class="detail-header rise rise-2">
-    <div class="detail-kicker">Forthcoming · 2026</div>
+    <div class="detail-kicker">Research Project · 06.2026 – 10.2026</div>
     <h1 class="detail-title">Self-Force and Gauge Dependence in Black-Hole Scattering</h1>
-    <div class="detail-meta">University of Southampton &nbsp;·&nbsp; Prof. Leor Barack</div>
+    <div class="detail-meta">University of Southampton (remote) &nbsp;·&nbsp; Supervised by Prof. Leor Barack</div>
   </header>
 
   <div class="prose rise rise-3">
-    <p>This project sits inside the broader programme of <em>self-force theory</em> for black-hole scattering, and concerns the gauge- and frame-dependence of the black-hole perturbative treatment. It builds directly on Sec. V.C of <a href="https://arxiv.org/pdf/1909.06103" target="_blank" rel="noopener">Barack &amp; Long (2019)</a>, where the analysis was carried out for a specific class of orbits; the goal here is to extend those calculations to <em>general scattering orbits</em>.</p>
 
-    <h3>Scope (preliminary)</h3>
-    <ul>
-      <li>Review of black-hole perturbation theory in different gauges, with particular attention to how observables depend on gauge/frame choices.</li>
-      <li>Extension of the calculation in Barack 2019, §V.C, to generic unbound (scattering) geodesics.</li>
-      <li>Coordination with Dr. Kevin Cunningham's ongoing work on a larger scattering self-force programme.</li>
-    </ul>
+    <h3>Gravitational self-force</h3>
 
-    <h3>Status</h3>
-    <p>Project planned for 2026. Notes, derivations, and outputs will appear here as the work develops.</p>
+    <p>A small body of mass $\mu$ orbiting a black hole of mass $M \gg \mu$ moves, to a first approximation, on a geodesic of the black-hole metric $g_{\mu\nu}$. This approximation ignores the body's own stress–energy: the body neither curves spacetime nor radiates, so its orbit never decays. In reality it emits gravitational waves and slowly spirals in: an extreme-mass-ratio inspiral (EMRI).</p>
 
-    <div class="downloads">
-      <span class="download-link" style="cursor:default; opacity:.55">Outputs forthcoming</span>
-    </div>
+    <p>Gravitational self-force theory puts the body's stress–energy back, order by order in the mass ratio $\epsilon \sim \mu/M$, and is the most accurate description of EMRIs. At first order the body perturbs the metric, $g_{\mu\nu} \to g_{\mu\nu} + h_{\mu\nu}$, and $h_{\mu\nu}$ solves the linearised Einstein equation sourced by a point particle on the worldline $z^\mu(\tau)$. In Lorenz gauge,</p>
+
+    <div class="eq" id="eq-field">$$ \begin{aligned} \Box\bar h_{\mu\nu} + 2R_{\mu}{}^{\rho}{}_{\nu}{}^{\sigma}\,\bar h_{\rho\sigma} &amp;= -16\pi T_{\mu\nu}, \qquad \nabla^{\nu}\bar h_{\mu\nu} = 0, \\ T^{\mu\nu} &amp;= \mu\int u^{\mu}u^{\nu}\,\frac{\delta^{4}\big(x - z(\tau)\big)}{\sqrt{-g}}\,d\tau, \end{aligned} \tag{1} $$</div>
+
+    <p>where $\bar h_{\mu\nu} = h_{\mu\nu} - \tfrac12 g_{\mu\nu}h$ is the trace-reversed perturbation and $u^\mu = dz^\mu/d\tau$.</p>
+
+    <p>The perturbation acts back on the body's motion. One cannot simply use the geodesic equation of $g + h$, because the retarded solution $h^{\rm ret}$ diverges on the worldline, like the Coulomb field of a point charge. Detweiler and Whiting split it as $h^{\rm ret} = h^{S} + h^{R}$: the singular field $h^{S}$ is built locally from the worldline and exerts no force, while the regular field $h^{R}$ is a smooth vacuum solution. The body then moves as a test particle in the metric $g + h^{R}$, which to first order is the forced geodesic equation</p>
+
+    <div class="eq" id="eq-force">$$ \begin{aligned} u^{\nu}\nabla_{\nu}u^{\mu} &amp;= \mathcal A^{\mu}\big[h^{R}\big] + O(\epsilon^{2}), \\ \mathcal A^{\mu}[h] &amp;= -\tfrac12\left(g^{\mu\nu} + u^{\mu}u^{\nu}\right)\left(2\nabla_{\alpha}h_{\nu\beta} - \nabla_{\nu}h_{\alpha\beta}\right)u^{\alpha}u^{\beta}. \end{aligned} \tag{2} $$</div>
+
+    <p>The self-force $\mathcal A^{\mu}[h^{R}]$ contains radiation reaction, which drives the inspiral, and a conservative part, which shifts the orbital frequencies.</p>
+
   </div>
 
   <footer class="footer">

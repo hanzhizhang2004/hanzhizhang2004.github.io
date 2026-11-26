@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relativistic Mean-Motion Resonance — Hanzhi Zhang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead rise rise-1">
+    <a href="../index.html" class="brand"><span class="glyph"></span>Hanzhi Zhang</a>
+    <nav class="primary">
+      <a href="../index.html">Home</a>
+      <a href="../projects.html" class="is-active">Projects</a>
+      <a href="../essays.html">Essays &amp; Blogs</a>
+      <a href="../cv.html">CV</a>
+    </nav>
+  </header>
+
+  <a href="../projects.html" class="back-link">All projects</a>
+
+  <header class="detail-header rise rise-2">
+    <div class="detail-kicker">Research Assistant · 10.2026 – present</div>
+    <h1 class="detail-title">Relativistic Mean-Motion Resonance</h1>
+    <div class="detail-meta">Tsinghua University &nbsp;·&nbsp; Supervised by Prof. Huan Yang</div>
+  </header>
+
+  <div class="prose rise rise-3">
+
+    <p>Since October 2026, as a research assistant with Prof. Huan Yang at Tsinghua University, I have been studying mean-motion resonances between two small bodies orbiting a black hole, within gravitational self-force theory.</p>
+
+    <!-- ===================================================== 1 -->
+    <h3><span class="sec-n">1</span>Background</h3>
+
+    <p>A small body orbiting a much heavier black hole loses energy to gravitational waves and slowly spirals in: an extreme-mass-ratio inspiral (EMRI). Gravitational self-force theory is the most accurate description of this motion. On my <a href="self-force.html">self-force project page</a> I explain how it works: the body's stress–energy <a href="self-force.html#eq-field">perturbs the metric</a>, and the perturbation, fed back into the geodesic equation, <a href="self-force.html#eq-force">corrects the orbit</a>.</p>
+
+    <p>With two small bodies the metric perturbation has two sources. Body $s$ ($s = 1, 2$) feels its own field only through its regular part, as a single body does, and the field of the other body $b$ in full, since that field is already smooth at body $s$:</p>
+
+    <div class="eq">$$ u_s^{\nu}\nabla_{\nu}u_s^{\mu} = \underbrace{\mathcal A_s^{\mu}\big[h_s^{R}\big]}_{\text{self}} + \underbrace{\mathcal A_s^{\mu}\big[h_b^{\rm ret}\big]}_{\text{mutual}} + O(\epsilon^{2}). \tag{1} $$</div>
+
+    <p><em class="runin">Mean-motion resonance.</em> The mutual pull is weak, and usually it averages out: each time the two bodies line up with the black hole they do so at a different point of their orbits, so successive kicks point in different directions. If the orbital frequencies are in an integer ratio, the line-ups recur at the same point, the kicks add up orbit after orbit, and they can lock the bodies together. Neptune and Pluto are held in a 3:2 resonance in this way.</p>
+
+    <p>Geodesic motion in Schwarzschild is integrable. For equatorial orbits each body has two actions $\mathbf J_s = (J_s^{r}, J_s^{\phi})$, constant along the geodesic, and two conjugate angles $\mathbf w_s = (w_s^{r}, w_s^{\phi})$, which advance uniformly at the radial and azimuthal frequencies $\boldsymbol\nu_s = \partial E_s/\partial\mathbf J_s$. For a pair of integer vectors $\mathbf N = (\mathbf N_1, \mathbf N_2)$, the resonant angle and its rate are</p>
+
+    <div class="eq">$$ \begin{aligned} \Psi &amp;= \mathbf N\cdot\mathbf w = \mathbf N_1\cdot\mathbf w_1 + \mathbf N_2\cdot\mathbf w_2, \\ \dot\Psi &amp;= \Delta(\mathbf J) \equiv \mathbf N_1\cdot\boldsymbol\nu_1 + \mathbf N_2\cdot\boldsymbol\nu_2. \end{aligned} \tag{2} $$</div>
+
+    <p>The bodies are in resonance on the surface $\Delta(\mathbf J) = 0$, where $\Psi$ stands still; near it $\Psi$ changes slowly, while every other combination of the angles turns at orbital rates. For the 2:1 resonance of Section 4, the value of $\Psi$ fixes where the line-ups happen: at the inner body's periapsis for $\Psi = 0$, at its apoapsis for $\Psi = \pi$ (Figure 1a). Around a black hole $\nu^{r} \neq \nu^{\phi}$ (periapsis precession), so each Newtonian resonance splits into several distinct ones.</p>
+
+  </div>
+
+  <figure class="fig" aria-label="Figure 1">
+    <div class="fig-grid">
+      <div class="fig-panel">
+        <canvas id="fig1a" aria-label="Animation: an inner eccentric orbit and an outer circular orbit; dots mark where the two bodies line up"></canvas>
+        <div class="fig-controls" style="margin-top:0">
+          <button class="fig-btn is-on" type="button" data-ratio="2">On resonance (2:1)</button>
+          <button class="fig-btn" type="button" data-ratio="2.1">Slightly off (2.1:1)</button>
+        </div>
+        <p class="fig-cap"><b>(a)</b> Dots mark where the two bodies line up with the black hole. On resonance the line-ups recur at one point; slightly off resonance they creep around the orbit as $\Psi$ drifts. Drawn in the frame that rotates with the inner periapsis, where the outer body goes round exactly once per two radial periods of the inner one; eccentricity exaggerated.</p>
+      </div>
+      <div class="fig-panel">
+        <svg id="fig1b" viewBox="0 0 300 236" role="img" aria-label="Pendulum phase portrait: closed curves inside an island, open curves outside"></svg>
+        <p class="fig-cap"><b>(b)</b> Near resonance $\Psi$ moves like a pendulum. Inside the shaded island it oscillates and the bodies are locked; outside it keeps turning and the bodies pass through the resonance.</p>
+      </div>
+    </div>
+    <p class="fig-cap"><b>Figure 1.</b> Line-ups in space, and the resonant angle in phase space.</p>
+  </figure>
+
+  <div class="prose">
+
+    <p>The aim of the project is to describe these resonances within self-force theory and to find their imprint on the gravitational waves.</p>
+
+    <!-- ===================================================== 2 -->
+    <h3><span class="sec-n">2</span>Equations of motion near resonance</h3>
+
+    <p>Under the self-force the actions are no longer constant: $\dot{\mathbf J} = O(\epsilon)$ and $\dot{\mathbf w} = \boldsymbol\nu(\mathbf J) + O(\epsilon)$, with $\epsilon \sim \mu/M$. The forcing is periodic in all four angles, a sum of harmonics $e^{i\mathbf n\cdot\mathbf w}$. Most of them turn at orbital rates and average out. Near the resonance the harmonics along $\mathbf N$, $\mathbf n = p\mathbf N$, turn only at the slow rate $p\Delta$ and survive. Removing the fast harmonics by a near-identity change of variables leaves the normal form</p>
+
+    <div class="eq">$$ \dot\Psi = \Delta(\mathbf J) + O(\epsilon), \qquad \dot{\mathbf J} = \epsilon\Big[\,\mathcal G^{J}_{0} + \sum_{p\neq 0}\mathcal G^{J}_{p\mathbf N}\,e^{ip\Psi}\Big] + O(\epsilon^{2}). \tag{3} $$</div>
+
+    <p>The resonance matters only within $|\Delta| \lesssim \epsilon^{1/2}$ of the resonance surface, where it acts on the time scale $M\epsilon^{-1/2}$, between the orbital time $M$ and the inspiral time $M\epsilon^{-1}$. There, differentiating $\dot\Psi = \Delta(\mathbf J)$ gives, up to $O(\epsilon^{3/2})$, a single equation for $\Psi$, with all coefficients evaluated on $\Delta = 0$:</p>
+
+    <div class="eq">$$ \ddot\Psi = \epsilon\,\frac{\partial\Delta}{\partial\mathbf J}\cdot\Big[\underset{\substack{\big\uparrow \\ \llap{\text{zero mode: own self-force}} \\ \llap{\left(\langle\dot{\mathbf J}_1\rangle,\,\langle\dot{\mathbf J}_2\rangle\right)} \\ \llap{\text{purely dissipative}}}}{\mathcal G^{J}_{0}} + \sum_{p\neq 0}\underset{\substack{\big\uparrow \\ \rlap{\text{non-zero modes: mutual interaction}}}}{\mathcal G^{J}_{p\mathbf N}}\,e^{ip\Psi}\Big]_{\Delta=0}, \tag{4} $$
+    $$ \mathcal G^{J}_{p\mathbf N} = \Big(-ip\,\mathbf N_1\big(\underset{\substack{\uparrow \\ \llap{\text{conservative}}}}{V_p} - i\,\underset{\substack{\uparrow \\ \rlap{\text{dissipative}}}}{u_p}\big),\;\; -ip\,\mathbf N_2(V_p + i\,u_p)\Big), \tag{5} $$</div>
+
+    <p>Here $V_p$ and $u_p$ are real. The two kinds of coefficients come from different physics. A body's self-force depends only on its own angles, so it contains no $e^{ip\Psi}$, which involves both bodies; the mutual forcing is the angle derivative of an interaction energy, so it averages to zero. Hence the zero mode is pure self-force and the resonant harmonics are pure mutual interaction. By time-reversal symmetry the conservative part of the self-force averages to zero over the orbit, so the zero mode is purely dissipative: it is the radiation reaction that drives the inspiral. In the resonant harmonics, $V_p$ is conservative and only moves energy from one body to the other, while $u_p$ is dissipative and changes the total energy.</p>
+
+    <!-- ===================================================== 3 -->
+    <h3><span class="sec-n">3</span>Reading the coefficients off the radiation</h3>
+
+    <p>Computing these coefficients directly would mean solving for the metric perturbation near the bodies and subtracting its singular part, a hard numerical problem. Energy gives a way around it. Each body's energy is a function of its actions, so it changes as $\dot E_s = \boldsymbol\nu_s\cdot\dot{\mathbf J}_s$. On the resonance surface both bodies share the frequency $\omega_p \equiv p\,\mathbf N_2\cdot\boldsymbol\nu_2 = -p\,\mathbf N_1\cdot\boldsymbol\nu_1$, and equations (3)–(5) turn into three energy statements:</p>
+
+    <div class="eq">$$ \begin{alignedat}{2} &amp;\text{self:}\quad &amp;&amp; \langle\dot E_s\rangle = \boldsymbol\nu_s\cdot\langle\dot{\mathbf J}_s\rangle, \quad \langle\dot L_s\rangle = \langle\dot J_s^{\phi}\rangle, \\ &amp;\text{mutual, dissipative:}\quad &amp;&amp; \dot E_1^{\rm diss} = \dot E_2^{\rm diss} = 2\epsilon\sum_{p\ge 1}\omega_p\,u_p\cos p\Psi, \\ &amp;\text{mutual, conservative:}\quad &amp;&amp; \dot E_1^{\rm cons} = -\dot E_2^{\rm cons} = -2\epsilon\sum_{p\ge 1}\omega_p\,V_p\sin p\Psi. \end{alignedat} \tag{6} $$</div>
+
+    <p>Energy can be counted far from the bodies, at infinity and at the horizon, where the field is a free gravitational wave. Each statement then becomes a scattering problem of its own (Figure 2):</p>
+
+    <ul>
+      <li><em>One body alone.</em> The energy and angular momentum it radiates give its drift $\langle\dot{\mathbf J}_s\rangle$.</li>
+      <li><em>Both bodies.</em> On resonance they radiate in the same mode at the same frequency, so their waves interfere, like two loudspeakers playing one note. The total flux minus each body's own flux leaves a cross term that depends on $\Psi$, and gives $u_p$. $V_p$ does not appear, since it only moves energy between the bodies.</li>
+      <li><em>Body 1 in body 2's wave.</em> Replace body 2 by the wave it sends towards body 1. The energy body 1 gains from this wave is the energy exchanged between the two bodies, and gives $V_p$.</li>
+    </ul>
+
+    <p>No step needs the metric perturbation near the bodies or its regularisation: the wave amplitudes far away are enough.</p>
+
+  </div>
+
+  <figure class="fig" aria-label="Figure 2" id="fig2">
+    <div class="strip-row">
+      <canvas class="strip" data-k="A" aria-label="One body radiating waves towards the horizon and towards infinity"></canvas>
+      <p class="fig-cap"><b>One body alone.</b> The energy and angular momentum it radiates give $\langle\dot{\mathbf J}_s\rangle$.</p>
+    </div>
+    <div class="strip-row">
+      <canvas class="strip" data-k="B" aria-label="Two bodies radiating; beyond them their waves add up with relative phase Psi"></canvas>
+      <p class="fig-cap"><b>Both bodies.</b> Beyond the bodies their waves add with relative phase $\Psi$; the $\Psi$-dependent part of the total flux gives $u_p$.</p>
+    </div>
+    <div class="strip-row">
+      <canvas class="strip" data-k="C" aria-label="Body 1 in a wave that comes in from infinity and is partly reflected by the potential barrier"></canvas>
+      <p class="fig-cap"><b>Body 1 in body 2's wave.</b> The wave comes in from infinity and is partly reflected by the barrier; the energy body 1 gains from it gives $V_p$.</p>
+    </div>
+    <p class="fig-cap"><b>Figure 2.</b> The three energy budgets along the tortoise coordinate, from the horizon (left) to infinity (right); the bump is the potential barrier. Ripples carry energy away from their source. Body 1 and its waves are black, body 2 and its waves gold, and their sum red.</p>
+  </figure>
+
+  <div class="prose">
+
+    <!-- ===================================================== 4 -->
+    <h3><span class="sec-n">4</span>Example: a 2:1 resonance</h3>
+
+    <p>Take an eccentric inner orbit (semi-latus rectum $10M$, eccentricity $e = 0.1$) and a circular outer orbit, in the 2:1 resonance $\Psi = w_1^{r} - 2w_1^{\phi} + 2w_2^{\phi}$; the condition $\Delta = 0$ places the outer body at $r = 12.97M$. Keeping the leading harmonic, equation (4) becomes a tilted pendulum,</p>
+
+    <div class="eq">$$ \theta'' = \kappa - \sin\theta, \qquad \theta = \Psi - \Psi_c, \tag{7} $$</div>
+
+    <p>where a prime is a derivative with respect to $\omega_{\rm res}t$, with $\omega_{\rm res}$ the frequency of small oscillations, and the phase offset $\Psi_c$, below $0.004$ here, comes from the dissipative coupling. The tilt $\kappa$ compares the push of the inspiral with the pull of the resonance. An island in which the bodies can lock exists only for $|\kappa| &lt; 1$. Figure 3 shows the solutions for this resonance.</p>
+
+  </div>
+
+  <figure class="fig" aria-label="Figure 3">
+    <div class="fig-grid">
+      <div class="fig-panel"><canvas id="fig3p" class="clickable" aria-label="Phase portrait of equation 7 for the 2:1 resonance. Click to start the pair at a chosen point."></canvas></div>
+      <div class="fig-panel"><canvas id="fig3o" aria-label="The inner orbit to scale, with a dot at each line-up"></canvas></div>
+    </div>
+    <div class="fig-controls">
+      <span class="fig-label">$\mu_1/\mu_2$</span>
+      <button class="fig-btn" type="button" data-rho="0.1">0.1</button>
+      <button class="fig-btn is-on" type="button" data-rho="1">1</button>
+      <button class="fig-btn" type="button" data-rho="10">10</button>
+      <span class="fig-sep" aria-hidden="true"></span>
+      <button class="fig-btn is-on" type="button" data-p="locked">Locked</button>
+      <button class="fig-btn" type="button" data-p="pass">Passing through</button>
+      <button class="fig-btn" type="button" id="fig3-play">Pause</button>
+    </div>
+    <div class="fig-controls">
+      <label class="fig-range" for="fig3-speed">speed <input type="range" id="fig3-speed" min="0" max="1" step="0.001"><output id="fig3-sv" for="fig3-speed"></output></label>
+    </div>
+    <div class="fig-status" id="fig3-status"></div>
+    <p class="fig-info" id="fig3-info"></p>
+    <p class="fig-cap"><b>Figure 3.</b> Solutions of (7) with the coefficients computed for this resonance, for $\mu_2/M = 10^{-5}$. Click the portrait to start the pair anywhere; the vertical axis is the change in the inner body's radial action. Outside the island $\Psi$ turns at the rate $\dot\Psi = \Delta$, which keeps growing as the inspiral carries the pair away from resonance. The orbit panel draws the inner orbit to scale, in the frame that rotates with its periapsis, with a dot at each line-up. The coefficients are held at their values on the resonance surface, so a pair inside the island stays locked and one outside passes through; capture and escape depend on how the coefficients drift along the resonance surface during the inspiral, the next step of the project.</p>
+  </figure>
+
+  <div class="prose">
+
+    <p>Evaluating the coefficients for this resonance gives three conclusions.</p>
+
+    <ul class="results">
+      <li><em>The bodies can lock.</em> For $e = 0.1$, $|\kappa| &lt; 0.1$ at every mass ratio, so the island is nearly that of an untilted pendulum.</li>
+      <li><em>Locking appears as an eccentricity oscillation.</em> Across the island the inner body's radial action changes by 10–30%, and one libration lasts about 70–200 inner orbits for $\mu_2/M = 10^{-5}$.</li>
+      <li><em>Nearly circular orbits do not lock.</em> The coupling grows with the inner eccentricity while the tilt does not, so $|\kappa| \propto 1/e$; for $\mu_1/\mu_2 = 10$ the island disappears below $e \approx 0.008$.</li>
+    </ul>
+
+    <div class="downloads">
+      <a class="download-link" href="reports/mmr-report-schwarzschild.pdf" target="_blank" rel="noopener">Read the full report (PDF) ↗</a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <span>Cambridge · MMXXVI</span>
+    <span><a href="mailto:hz497@cam.ac.uk">hz497@cam.ac.uk</a></span>
+  </footer>
+
+</div>
+
+<script>
+{
+  const C = {ink: "#1a1814", soft: "#3a342c", mute: "#6b6358", rule: "#c8bfae", ox: "#6e1a1f", gold: "#8a6a2e", paper: "#f4efe6"};
+  const PI = Math.PI, TAU = 2 * Math.PI;
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const SERIF = '"EB Garamond", Georgia, serif';
+
+  function fit(cv, aspect) {
+    const dpr = window.devicePixelRatio || 1;
+    const w = cv.clientWidth, h = Math.round(w * aspect);
+    cv.style.height = h + "px";
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    const ctx = cv.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return {ctx, w, h};
+  }
+  function kepler(M, e) { let E = M; for (let i = 0; i < 8; i++) E -= (E - e * Math.sin(E) - M) / (1 - e * Math.cos(E)); return E; }
+  function trueAnomaly(E, e) { const b = e / (1 + Math.sqrt(1 - e * e)); return E + 2 * Math.atan(b * Math.sin(E) / (1 - b * Math.cos(E))); }
+  function innerXY(M, e) { const E = kepler(M, e); return [Math.cos(E) - e, Math.sqrt(1 - e * e) * Math.sin(E)]; }
+  function disc(ctx, x, y, r, fill, ring) {
+    ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fillStyle = fill; ctx.fill();
+    if (ring) { ctx.lineWidth = 1.2; ctx.strokeStyle = C.paper; ctx.stroke(); }
+  }
+  function orbitFrame(ctx, cx, cy, s, e, R) {
+    ctx.save();
+    ctx.setLineDash([2, 4]); ctx.strokeStyle = C.rule; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(cx, cy, s * R, 0, TAU); ctx.stroke();
+    ctx.setLineDash([]); ctx.strokeStyle = C.mute; ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let i = 0; i <= 180; i++) {
+      const E = TAU * i / 180, x = cx + s * (Math.cos(E) - e), y = cy - s * Math.sqrt(1 - e * e) * Math.sin(E);
+      if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+    }
+    ctx.stroke();
+    ctx.fillStyle = C.mute; ctx.font = "italic 13px " + SERIF; ctx.textAlign = "left"; ctx.textBaseline = "middle";
+    ctx.fillText("periapsis", cx + s * (1 - e) + 6, cy + 11);
+    disc(ctx, cx, cy, Math.max(5, s * 0.11), C.ink);
+    ctx.restore();
+  }
+  // run a loop only while the canvas is on screen
+  function onScreen(el, cb) {
+    if (!("IntersectionObserver" in window)) { cb(true); return; }
+    new IntersectionObserver(es => cb(es[0].isIntersecting), {rootMargin: "100px"}).observe(el);
+  }
+
+  /* ---------------- Figure 1a: line-ups in physical space ---------------- */
+  {
+    const cv = document.getElementById("fig1a"), e = 0.3;
+    const A = {ratio: 2, t: 0, n: 0, dots: [], flash: 0, flashAng: 0, visible: true};
+    let G;
+    const rel = t => trueAnomaly(kepler(TAU * t, e), e) - TAU * t / A.ratio;
+    function reset() { A.t = 0; A.n = 0; A.dots = [innerXY(0, e)]; A.flash = 1; A.flashAng = 0; }
+    function advance(dt) {
+      const t0 = A.t, t1 = A.t + dt;
+      if (Math.floor(rel(t1) / TAU + 1e-9) > A.n) {
+        let lo = t0, hi = t1;
+        for (let i = 0; i < 30; i++) { const m = (lo + hi) / 2; if (Math.floor(rel(m) / TAU + 1e-9) > A.n) hi = m; else lo = m; }
+        const d = innerXY(TAU * hi, e);
+        A.n++; A.dots.push(d); if (A.dots.length > 28) A.dots.shift(); A.flash = 1; A.flashAng = Math.atan2(d[1], d[0]);
+      }
+      A.t = t1; A.flash = Math.max(0, A.flash - dt * 2.5);
+    }
+    function draw() {
+      const {ctx, w, h} = G, R = Math.pow(A.ratio, 2 / 3);
+      const cx = w / 2, cy = h / 2, s = (Math.min(w, h) / 2 - 12) / R;
+      ctx.clearRect(0, 0, w, h);
+      orbitFrame(ctx, cx, cy, s, e, R);
+      const [x1, y1] = innerXY(TAU * A.t, e), phi2 = TAU * A.t / A.ratio;
+      const X1 = cx + s * x1, Y1 = cy - s * y1, X2 = cx + s * R * Math.cos(phi2), Y2 = cy - s * R * Math.sin(phi2);
+      if (A.flash > 0) {
+        ctx.strokeStyle = "rgba(110,26,31," + (0.6 * A.flash).toFixed(3) + ")"; ctx.lineWidth = 1.2;
+        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + s * R * 1.08 * Math.cos(A.flashAng), cy - s * R * 1.08 * Math.sin(A.flashAng)); ctx.stroke();
+      }
+      A.dots.forEach((d, i) => {
+        const a = 0.25 + 0.75 * (i + 1) / A.dots.length;
+        ctx.globalAlpha = a; disc(ctx, cx + s * d[0], cy - s * d[1], 4, C.ox); ctx.globalAlpha = 1;
+      });
+      disc(ctx, X1, Y1, 5, C.ink, true);
+      disc(ctx, X2, Y2, 5.5, C.gold, true);
+    }
+    function size() { G = fit(cv, 0.86); draw(); }
+    let last = null;
+    function frame(ts) {
+      if (last !== null && A.visible) { advance(Math.min(ts - last, 50) / 1000 / 1.1); draw(); }
+      last = ts; requestAnimationFrame(frame);
+    }
+    document.querySelectorAll("[data-ratio]").forEach(b => b.addEventListener("click", () => {
+      document.querySelectorAll("[data-ratio]").forEach(o => o.classList.toggle("is-on", o === b));
+      A.ratio = +b.dataset.ratio; reset();
+      if (reduce) { for (let i = 0; i < 2400; i++) advance(0.01); A.flash = 0; }
+      draw();
+    }));
+    window.addEventListener("resize", size);
+    reset(); size();
+    if (reduce) { for (let i = 0; i < 2400; i++) advance(0.01); A.flash = 0; draw(); }
+    else { onScreen(cv, v => { A.visible = v; }); requestAnimationFrame(frame); }
+    if (document.fonts) document.fonts.ready.then(draw);
+  }
+
+  /* ---------------- Figure 1b: pendulum phase portrait (static SVG) ---------------- */
+  {
+    const svg = document.getElementById("fig1b");
+    const x0 = 40, x1 = 290, y0 = 12, y1 = 192, TP = 3.0;
+    const X = th => x0 + (th + PI) / TAU * (x1 - x0), Y = tp => y0 + (TP - tp) / (2 * TP) * (y1 - y0);
+    const path = pts => "M" + pts.map(p => p[0].toFixed(1) + "," + p[1].toFixed(1)).join("L");
+    let s = "";
+    for (const E of [1.55, 2.35]) for (const sg of [1, -1]) {
+      const pts = [];
+      for (let i = 0; i <= 120; i++) { const th = -PI + TAU * i / 120; pts.push([X(th), Y(sg * Math.sqrt(2 * (E + Math.cos(th))))]); }
+      s += '<path d="' + path(pts) + '" fill="none" stroke="' + C.rule + '" stroke-width="1.1"/>';
+    }
+    const up = [], dn = [];
+    for (let i = 0; i <= 160; i++) { const th = -PI + TAU * i / 160, tp = 2 * Math.cos(th / 2); up.push([X(th), Y(tp)]); dn.push([X(th), Y(-tp)]); }
+    s += '<path d="' + path(up.concat(dn.slice().reverse())) + 'Z" fill="rgba(110,26,31,0.09)"/>';
+    for (const E of [-0.55, 0, 0.5]) {
+      const a = Math.acos(-E), U = [], D = [];
+      for (let i = 0; i <= 80; i++) { const th = -a + 2 * a * i / 80, F = Math.max(2 * (E + Math.cos(th)), 0); U.push([X(th), Y(Math.sqrt(F))]); D.push([X(th), Y(-Math.sqrt(F))]); }
+      s += '<path d="' + path(U.concat(D.reverse())) + 'Z" fill="none" stroke="' + C.ox + '" stroke-width="0.8" opacity="0.45"/>';
+    }
+    s += '<path d="' + path(up) + '" fill="none" stroke="' + C.ox + '" stroke-width="1.7"/>';
+    s += '<path d="' + path(dn) + '" fill="none" stroke="' + C.ox + '" stroke-width="1.7"/>';
+    const yt = Y(Math.sqrt(2 * (2.35 + 1))), yb = Y(-Math.sqrt(2 * (2.35 + 1)));
+    s += '<path d="M' + (X(0) - 5) + ',' + (yt - 4) + 'L' + (X(0) + 4) + ',' + yt + 'L' + (X(0) - 5) + ',' + (yt + 4) + 'Z" fill="' + C.mute + '"/>';
+    s += '<path d="M' + (X(0) + 5) + ',' + (yb - 4) + 'L' + (X(0) - 4) + ',' + yb + 'L' + (X(0) + 5) + ',' + (yb + 4) + 'Z" fill="' + C.mute + '"/>';
+    s += '<circle cx="' + X(0) + '" cy="' + Y(0) + '" r="2.6" fill="' + C.ox + '"/>';
+    const lab = (x, y, t, col, anchor) => '<text x="' + x + '" y="' + y + '" text-anchor="' + (anchor || "middle") + '" font-family=\'EB Garamond, Georgia, serif\' font-style="italic" font-size="13" fill="' + col + '" style="paint-order:stroke;stroke:#fbf8f1;stroke-width:4px">' + t + '</text>';
+    s += lab(X(0), Y(0) - 9, "locked", C.ox);
+    s += lab(X(-2.0), Y(2.62), "passing through", C.soft);
+    s += '<rect x="' + x0 + '" y="' + y0 + '" width="' + (x1 - x0) + '" height="' + (y1 - y0) + '" fill="none" stroke="' + C.mute + '" stroke-width="0.8"/>';
+    const tick = (th, t) => '<text x="' + X(th) + '" y="' + (y1 + 14) + '" text-anchor="middle" font-family=\'EB Garamond, Georgia, serif\' font-size="12" fill="' + C.mute + '">' + t + '</text>';
+    s += tick(-PI, "−π") + tick(0, "0") + tick(PI, "π");
+    s += '<text x="' + ((x0 + x1) / 2) + '" y="' + (y1 + 32) + '" text-anchor="middle" font-family=\'EB Garamond, Georgia, serif\' font-style="italic" font-size="13" fill="' + C.soft + '">resonant angle Ψ</text>';
+    s += '<text transform="translate(16,' + ((y0 + y1) / 2) + ') rotate(-90)" text-anchor="middle" font-family=\'EB Garamond, Georgia, serif\' font-style="italic" font-size="13" fill="' + C.soft + '">Ψ̇ = Δ</text>';
+    svg.innerHTML = s;
+  }
+
+  /* ---------------- Figure 2: energy budgets along the tortoise coordinate ---------------- */
+  {
+    const fig = document.getElementById("fig2"), cvs = [...fig.querySelectorAll("canvas.strip")];
+    const LAM = 20, SPEED = 34, H = 92, YA = H - 20, YW = YA - 30;
+    let G = [], visible = true;
+    function fitH(cv) {
+      const dpr = window.devicePixelRatio || 1, w = cv.clientWidth;
+      cv.style.height = H + "px"; cv.width = Math.round(w * dpr); cv.height = Math.round(H * dpr);
+      const ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return {ctx, w, kind: cv.dataset.k};
+    }
+    function wave(ctx, xa, xb, y, A, dir, col, t, alpha) {
+      const len = Math.abs(xb - xa), n = Math.max(2, Math.round(len / 1.5));
+      ctx.globalAlpha = alpha == null ? 1 : alpha;
+      ctx.beginPath();
+      for (let i = 0; i <= n; i++) {
+        const x = xa + (xb - xa) * i / n, s = Math.abs(x - xa), env = Math.min(1, s / 10) * Math.min(1, (len - s) / 16);
+        const yy = y - A * env * Math.sin(TAU * (x - dir * SPEED * t) / LAM);
+        if (i) ctx.lineTo(x, yy); else ctx.moveTo(x, yy);
+      }
+      ctx.strokeStyle = col; ctx.lineWidth = 1.3; ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(xb, y); ctx.lineTo(xb - dir * 6, y - 3.5); ctx.lineTo(xb - dir * 6, y + 3.5); ctx.closePath();
+      ctx.fillStyle = col; ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+    function body(ctx, x, col, label) {
+      disc(ctx, x, YW, 5, col, true);
+      ctx.fillStyle = col; ctx.font = "italic 12px " + SERIF; ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
+      ctx.fillText(label, x, YW - 13);
+    }
+    function scene(g, i, t) {
+      const {ctx, w, kind} = g, xb = Math.max(0.17 * w, 88), sg = Math.max(0.035 * w, 12);
+      ctx.clearRect(0, 0, w, H);
+      ctx.fillStyle = C.ink; ctx.fillRect(4, 10, 6, YA - 10);
+      ctx.strokeStyle = C.rule; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(10, YA + 0.5); ctx.lineTo(w - 4, YA + 0.5); ctx.stroke();
+      ctx.strokeStyle = C.mute; ctx.beginPath();
+      for (let x = xb - 3 * sg; x <= xb + 3 * sg; x += 1) { const y = YA - 26 * Math.exp(-(((x - xb) / sg) ** 2)); if (x === xb - 3 * sg) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+      ctx.stroke();
+      ctx.fillStyle = C.mute; ctx.font = "italic 12px " + SERIF; ctx.textBaseline = "top";
+      ctx.textAlign = "right"; ctx.fillText("∞", w - 6, YA + 4);
+      if (i === 0) { ctx.textAlign = "left"; ctx.fillText("horizon", 4, YA + 4); ctx.textAlign = "center"; ctx.fillText("potential", xb, YA + 4); }
+      if (kind === "A") {
+        const x1 = 0.5 * w;
+        wave(ctx, x1 + 7, w - 14, YW, 6.5, 1, C.ink, t);
+        wave(ctx, x1 - 7, 16, YW, 5, -1, C.ink, t);
+        body(ctx, x1, C.ink, "s");
+      } else if (kind === "B") {
+        const x1 = 0.42 * w, x2 = 0.64 * w, psi = TAU * t / 9, amp = 4.6 * Math.sqrt(2 + 2 * Math.cos(psi));
+        wave(ctx, x2 + 7, w - 14, YW, amp, 1, C.ox, t);
+        wave(ctx, x1 - 7, 16, YW, 0.8 * amp, -1, C.ox, t);
+        wave(ctx, x1 + 7, x2 - 7, YW - 6, 3.5, 1, C.ink, t, 0.85);
+        wave(ctx, x2 - 7, x1 + 7, YW + 6, 3.5, -1, C.gold, t, 0.9);
+        body(ctx, x1, C.ink, "1"); body(ctx, x2, C.gold, "2");
+        const dx = w - 26, dy = 16;
+        ctx.strokeStyle = C.rule; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(dx, dy, 9, 0, TAU); ctx.stroke();
+        ctx.strokeStyle = C.ox; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(dx, dy); ctx.lineTo(dx + 8 * Math.sin(psi), dy - 8 * Math.cos(psi)); ctx.stroke();
+        ctx.fillStyle = C.soft; ctx.font = "italic 13px " + SERIF; ctx.textAlign = "right"; ctx.textBaseline = "middle"; ctx.fillText("Ψ", dx - 14, dy);
+      } else {
+        const x1 = 0.5 * w;
+        wave(ctx, w - 14, xb + 1.5 * sg, YW - 6, 5.5, -1, C.gold, t);
+        wave(ctx, xb + 1.5 * sg, w - 14, YW + 6, 3, 1, C.gold, t, 0.7);
+        wave(ctx, xb - 1.5 * sg, 16, YW, 3.5, -1, C.gold, t);
+        const r = 7 + 4 * (0.5 + 0.5 * Math.sin(TAU * t / 1.3));
+        ctx.strokeStyle = C.gold; ctx.lineWidth = 1.2; ctx.globalAlpha = 0.65; ctx.beginPath(); ctx.arc(x1, YW, r, 0, TAU); ctx.stroke(); ctx.globalAlpha = 1;
+        body(ctx, x1, C.ink, "1");
+      }
+    }
+    const drawAll = t => G.forEach((g, i) => scene(g, i, t));
+    function size() { G = cvs.map(fitH); drawAll(reduce ? 0.8 : performance.now() / 1000); }
+    window.addEventListener("resize", size);
+    size();
+    if (!reduce) {
+      onScreen(fig, v => { visible = v; });
+      const loop = ts => { if (visible) drawAll(ts / 1000); requestAnimationFrame(loop); };
+      requestAnimationFrame(loop);
+    }
+    if (document.fonts) document.fonts.ready.then(() => drawAll(reduce ? 0.8 : performance.now() / 1000));
+  }
+
+  /* ---------------- Figure 3: equation (7) with the computed coefficients ---------------- */
+  {
+    // Background quantities from Schwarzschild geodesics (G = c = M = 1, per unit mass):
+    // inner orbit p = 10, e = 0.1; outer circular orbit on the resonance surface, r2 = 12.972.
+    // H1 = N1.H1.N1 and H2 = N2.H2.N2 with H = d(nu)/d(J/mu); Jr1 = radial action; nuPhi1 = azimuthal frequency.
+    const BG = {H1: -0.131480, H2: -0.089432, Jr1: 0.0150629, nuPhi1: 0.0312962};
+    // Mutual coefficients (eps V_1 = mu1 mu2 v1 / M, eps u_1 = mu1 mu2 u1 / M) and the tilt kappa = eps Lambda_0 / omega_res^2,
+    // all from the flux calculation of the report; mu2 / M = 1e-5.
+    const V1 = 8.77e-3, U1 = 4.3e-3 * 8.77e-3, MU2 = 1e-5;
+    const CASES = {"0.1": {rho: 0.1, kappa: 0.008}, "1": {rho: 1, kappa: -0.029}, "10": {rho: 10, kappa: -0.079}};
+    function params(c) {
+      const mu1 = c.rho * MU2, a = BG.H1 / mu1 + BG.H2 / MU2, am = BG.H1 / mu1 - BG.H2 / MU2;
+      const eV = mu1 * MU2 * V1, eL1 = -am * mu1 * MU2 * U1;
+      const w2 = 2 * Math.hypot(a * eV, eL1), w = Math.sqrt(w2);
+      return {kappa: c.kappa,
+              psic: Math.atan2(2 * eL1 / w2, -2 * a * eV / w2),   // phase offset of the island
+              yscale: w / (a * mu1 * BG.Jr1),                      // dJ_1r / J_1r per unit theta'
+              orbPerTau: BG.nuPhi1 / (2 * PI * w)};                // inner orbits per unit omega_res t
+    }
+    // Inner orbit, to scale, in the frame rotating with its periapsis; line-up map Psi -> point on the orbit.
+    const ORB = (() => {
+      const p = 10, e = 0.1, N = 2048, tt = new Float64Array(N + 1), ph = new Float64Array(N + 1), h = TAU / N;
+      const dt = c => p * p / ((p - 2 - 2 * e * Math.cos(c)) * (1 + e * Math.cos(c)) ** 2) * Math.sqrt(((p - 2) ** 2 - 4 * e * e) / (p - 6 - 2 * e * Math.cos(c)));
+      const dp = c => Math.sqrt(p / (p - 6 - 2 * e * Math.cos(c)));
+      for (let i = 1; i <= N; i++) {
+        const a = (i - 1) * h, m = a + h / 2, b = i * h;
+        tt[i] = tt[i - 1] + h / 6 * (dt(a) + 4 * dt(m) + dt(b));
+        ph[i] = ph[i - 1] + h / 6 * (dp(a) + 4 * dp(m) + dp(b));
+      }
+      const nur = TAU / tt[N], nuf = ph[N] / tt[N];
+      const G = new Float64Array(N + 1), A = new Float64Array(N + 1), R = new Float64Array(N + 1);
+      for (let i = 0; i <= N; i++) {
+        const wr = nur * tt[i], dphi = ph[i] - nuf * tt[i];
+        G[i] = wr + 2 * dphi; A[i] = wr + dphi; R[i] = p / (1 + e * Math.cos(i * h));
+      }
+      return {G, A, R, N, nur, nuf, r2: Math.pow(nuf - nur / 2, -2 / 3), lineupOrbits: 2 * nuf / nur};
+    })();
+    function lineupPoint(psi) {          // where the inner body is when the bodies line up, for a given Psi
+      const x = ((psi % TAU) + TAU) % TAU, G = ORB.G;
+      let lo = 0, hi = ORB.N;
+      while (hi - lo > 1) { const m = (lo + hi) >> 1; if (G[m] <= x) lo = m; else hi = m; }
+      const f = (x - G[lo]) / (G[hi] - G[lo]), A = ORB.A[lo] + f * (ORB.A[hi] - ORB.A[lo]), R = ORB.R[lo] + f * (ORB.R[hi] - ORB.R[lo]);
+      return [R * Math.cos(A), R * Math.sin(A)];
+    }
+
+    const cvP = document.getElementById("fig3p"), cvO = document.getElementById("fig3o");
+    const elSpeed = document.getElementById("fig3-speed"), elSv = document.getElementById("fig3-sv");
+    const elStatus = document.getElementById("fig3-status"), elInfo = document.getElementById("fig3-info"), playBtn = document.getElementById("fig3-play");
+    const DTAU = 0.01, TPM = 3.2, SMIN = 10, SMAX = 5000;
+    const S = {rho: "1", mode: "locked", th0: 0, tp0: 0, th: 0, tp: 0, tau: 0, trail: [], lastTrail: 0, lines: [], nextLine: 0,
+               speed: 100, running: !reduce, done: false, visible: true};
+    let PR = params(CASES[S.rho]);
+
+    // 4th-order symplectic (Yoshida) step for theta'' = kappa - sin(theta)
+    const YW1 = 1 / (2 - Math.cbrt(2)), YW0 = -Math.cbrt(2) * YW1;
+    const YC = [YW1 / 2, (YW0 + YW1) / 2, (YW0 + YW1) / 2, YW1 / 2], YD = [YW1, YW0, YW1];
+    function step(dt) {
+      for (let i = 0; i < 3; i++) { S.th += YC[i] * dt * S.tp; S.tp += YD[i] * dt * (PR.kappa - Math.sin(S.th)); }
+      S.th += YC[3] * dt * S.tp; S.tau += dt;
+    }
+    const wrap = x => ((x + PI) % TAU + TAU) % TAU - PI;
+    function island(k) {
+      const ths = Math.asin(k), thu = PI - Math.asin(k);
+      const Eu = -k * thu - Math.cos(thu), El = -k * (thu - TAU) - Math.cos(thu), Esep = Math.min(Eu, El);
+      const F = th => 2 * (Esep + k * th + Math.cos(th));
+      let a, b; const h = 0.0015;
+      if (Eu <= El) { b = thu; a = ths; while (a > thu - TAU && F(a - h) >= 0) a -= h; }
+      else { a = thu - TAU; b = ths; while (b < thu && F(b + h) >= 0) b += h; }
+      return {k, ths, Esep, a, b, half: Math.sqrt(2 * (Esep + k * ths + Math.cos(ths)))};
+    }
+    let ISL = island(PR.kappa);
+    function inside(th, tp) {
+      const t = wrap(th), E = 0.5 * tp * tp - ISL.k * t - Math.cos(t);
+      return E < ISL.Esep && t >= ISL.a && t <= ISL.b;
+    }
+
+    let P, O;
+    const pad = {l: 50, r: 10, t: 10, b: 40};
+    const YR = () => TPM * Math.abs(PR.yscale) * 100;                       // plotted range of dJ_1r/J_1r, in per cent
+    const xOf = psi => pad.l + (psi + PI) / TAU * (P.w - pad.l - pad.r);
+    const yOf = y => pad.t + (YR() - y) / (2 * YR()) * (P.h - pad.t - pad.b);
+    const yOfTp = tp => yOf(100 * PR.yscale * tp);
+    function niceStep(x) { const p10 = Math.pow(10, Math.floor(Math.log10(x))), m = x / p10; return (m < 1.5 ? 1 : m < 3.5 ? 2 : m < 7.5 ? 5 : 10) * p10; }
+    function level(ctx, E, lo, hi) {
+      const k = PR.kappa, n = 360;
+      for (const sg of [1, -1]) {
+        ctx.beginPath(); let pen = false;
+        for (let i = 0; i <= n; i++) {
+          const th = lo + (hi - lo) * i / n, F = 2 * (E + k * th + Math.cos(th));
+          if (F < 0) { pen = false; continue; }
+          const tp = sg * Math.sqrt(F);
+          if (Math.abs(tp) > TPM * 1.05) { pen = false; continue; }
+          const x = xOf(th + PR.psic), y = yOfTp(tp);
+          if (!pen) { ctx.moveTo(x, y); pen = true; } else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+    }
+    function drawPortrait() {
+      const ctx = P.ctx, k = PR.kappa;
+      ctx.clearRect(0, 0, P.w, P.h);
+      ctx.save();
+      ctx.beginPath(); ctx.rect(pad.l, pad.t, P.w - pad.l - pad.r, P.h - pad.t - pad.b); ctx.clip();
+      ctx.strokeStyle = "rgba(200,191,174,0.75)"; ctx.lineWidth = 0.8;
+      for (let j = -6; j <= 12; j++) if (j) level(ctx, ISL.Esep + 0.4 * j, -PI, PI);
+      const n = 300;
+      ctx.beginPath();
+      for (let i = 0; i <= n; i++) { const th = ISL.a + (ISL.b - ISL.a) * i / n, F = Math.max(2 * (ISL.Esep + k * th + Math.cos(th)), 0); const x = xOf(th + PR.psic), y = yOfTp(Math.sqrt(F)); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
+      for (let i = n; i >= 0; i--) { const th = ISL.a + (ISL.b - ISL.a) * i / n, F = Math.max(2 * (ISL.Esep + k * th + Math.cos(th)), 0); ctx.lineTo(xOf(th + PR.psic), yOfTp(-Math.sqrt(F))); }
+      ctx.closePath(); ctx.fillStyle = "rgba(110,26,31,0.09)"; ctx.fill();
+      ctx.strokeStyle = C.ox; ctx.lineWidth = 1.8; level(ctx, ISL.Esep, ISL.a, ISL.b);
+      disc(ctx, xOf(ISL.ths + PR.psic), yOfTp(0), 2.6, C.ox);
+      ctx.lineWidth = 1.3; ctx.lineCap = "round";
+      const tr = S.trail, m = tr.length;
+      for (let i = 1; i < m; i++) {
+        const a = tr[i - 1], b = tr[i];
+        if (Math.abs(b[0] - a[0]) > PI) continue;
+        ctx.strokeStyle = "rgba(26,24,20," + (0.04 + 0.5 * i / m).toFixed(3) + ")";
+        ctx.beginPath(); ctx.moveTo(xOf(a[0]), yOfTp(a[1])); ctx.lineTo(xOf(b[0]), yOfTp(b[1])); ctx.stroke();
+      }
+      if (Math.abs(S.tp) <= TPM) disc(ctx, xOf(wrap(S.th + PR.psic)), yOfTp(S.tp), 5, C.ink, true);
+      ctx.restore();
+      ctx.strokeStyle = C.mute; ctx.lineWidth = 0.8;
+      ctx.strokeRect(pad.l + 0.5, pad.t + 0.5, P.w - pad.l - pad.r - 1, P.h - pad.t - pad.b - 1);
+      ctx.fillStyle = C.mute; ctx.font = "13px " + SERIF; ctx.textAlign = "center"; ctx.textBaseline = "top";
+      [[-PI, "−π"], [0, "0"], [PI, "π"]].forEach(([v, s]) => ctx.fillText(s, xOf(v), P.h - pad.b + 4));
+      const st = niceStep(YR() / 2);
+      ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      for (let y = -Math.floor(YR() / st) * st; y <= YR() + 1e-9; y += st) ctx.fillText((y > 0 ? "+" : y < 0 ? "−" : "") + Math.abs(Math.round(y)) + (y ? "%" : ""), pad.l - 5, yOf(y));
+      ctx.fillStyle = C.soft; ctx.font = "italic 13px " + SERIF; ctx.textAlign = "center"; ctx.textBaseline = "top";
+      ctx.fillText("resonant angle Ψ", (pad.l + P.w - pad.r) / 2, P.h - 19);
+      ctx.save(); ctx.translate(11, (pad.t + P.h - pad.b) / 2); ctx.rotate(-PI / 2); ctx.textBaseline = "middle";
+      ctx.fillText("δJ₁ᵣ / J₁ᵣ", 0, 0); ctx.restore();
+    }
+    function drawOrbit() {
+      const {ctx, w, h} = O, cx = w / 2, cy = h / 2 - 8, s = (Math.min(w, h) / 2 - 22) / ORB.r2;
+      ctx.clearRect(0, 0, w, h);
+      ctx.setLineDash([2, 4]); ctx.strokeStyle = C.rule; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.arc(cx, cy, s * ORB.r2, 0, TAU); ctx.stroke(); ctx.setLineDash([]);
+      ctx.strokeStyle = C.mute; ctx.beginPath();
+      for (let i = 0; i <= ORB.N; i += 8) { const x = cx + s * ORB.R[i] * Math.cos(ORB.A[i]), y = cy - s * ORB.R[i] * Math.sin(ORB.A[i]); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
+      ctx.closePath(); ctx.stroke();
+      disc(ctx, cx, cy, 2 * s, C.ink);
+      ctx.fillStyle = C.mute; ctx.font = "italic 13px " + SERIF; ctx.textAlign = "left"; ctx.textBaseline = "middle";
+      ctx.fillText("periapsis", cx + s * ORB.R[0] + 6, cy + 12);
+      const L = S.lines, n = L.length;
+      L.forEach((psi, i) => { const [x, y] = lineupPoint(psi); ctx.globalAlpha = 0.15 + 0.6 * (i + 1) / n; disc(ctx, cx + s * x, cy - s * y, 3.2, C.ox); ctx.globalAlpha = 1; });
+      if (n) {
+        const [x, y] = lineupPoint(L[n - 1]), ang = Math.atan2(y, x);
+        ctx.strokeStyle = "rgba(110,26,31,0.55)"; ctx.lineWidth = 1.1;
+        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + s * ORB.r2 * 1.06 * Math.cos(ang), cy - s * ORB.r2 * 1.06 * Math.sin(ang)); ctx.stroke();
+        disc(ctx, cx + s * x, cy - s * y, 5, C.ink, true);
+        disc(ctx, cx + s * ORB.r2 * Math.cos(ang), cy - s * ORB.r2 * Math.sin(ang), 5.5, C.gold, true);
+      }
+      ctx.fillStyle = C.soft; ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
+      ctx.fillText("line-ups on the inner orbit", w / 2, h - 6);
+    }
+    function status() {
+      const orbits = Math.round(S.tau * PR.orbPerTau).toLocaleString("en");
+      let t;
+      if (S.done) t = "<b>Passed through.</b> The pair left the resonance zone after " + orbits + " inner orbits.";
+      else if (inside(S.th, S.tp)) t = "<b>Locked.</b> Ψ librates and the line-ups swing about one point. " + orbits + " inner orbits.";
+      else t = "<b>Not locked.</b> Ψ circulates and the line-ups go round the orbit. " + orbits + " inner orbits.";
+      elStatus.innerHTML = t;
+    }
+    function info() {
+      const width = 2 * ISL.half * Math.abs(PR.yscale) * 100, tlib = TAU * PR.orbPerTau;
+      elInfo.textContent = "μ₁/μ₂ = " + CASES[S.rho].rho + ":  κ = " + PR.kappa.toFixed(3).replace("-", "−") +
+        ",  island width " + width.toFixed(0) + "% of J₁ᵣ,  small-oscillation period " + tlib.toFixed(0) + " inner orbits.";
+    }
+    function draw() { if (!P) return; drawPortrait(); drawOrbit(); status(); }
+    function restart() {
+      S.th = S.th0; S.tp = S.tp0; S.tau = 0; S.trail = [[wrap(S.th + PR.psic), S.tp]]; S.lastTrail = 0;
+      S.lines = []; S.nextLine = ORB.lineupOrbits / PR.orbPerTau; S.done = false;
+      draw();
+    }
+    function advance(sec) {
+      const dTau = sec * S.speed / PR.orbPerTau, n = Math.ceil(dTau / DTAU), dt = dTau / n;
+      for (let i = 0; i < n; i++) {
+        step(dt);
+        if (S.tau - S.lastTrail >= 0.02) { S.trail.push([wrap(S.th + PR.psic), S.tp]); S.lastTrail = S.tau; if (S.trail.length > 6000) S.trail.shift(); }
+        while (S.tau >= S.nextLine) { S.lines.push(S.th + PR.psic); if (S.lines.length > 60) S.lines.shift(); S.nextLine += ORB.lineupOrbits / PR.orbPerTau; }
+        if (Math.abs(S.tp) > TPM * 1.04) { S.done = true; break; }
+      }
+    }
+    const toSlider = v => Math.log(v / SMIN) / Math.log(SMAX / SMIN), fromSlider = u => SMIN * Math.pow(SMAX / SMIN, u);
+    function setSpeed(v) { S.speed = v; elSpeed.value = toSlider(v); elSv.textContent = Math.round(v).toLocaleString("en") + " orbits/s"; }
+    function setPlay(on) { S.running = on; playBtn.textContent = on ? "Pause" : "Play"; }
+    function preset(mode) {
+      S.mode = mode;
+      const k = PR.kappa, tlib = TAU * PR.orbPerTau;
+      if (mode === "locked") { S.th0 = ISL.ths + 1.4; S.tp0 = 0; setSpeed(Math.max(SMIN, tlib / 1.6)); }
+      else { S.th0 = 0; S.tp0 = k < 0 ? TPM * 0.98 : -TPM * 0.98; setSpeed(Math.min(SMAX, 2 * TPM / Math.abs(k) * PR.orbPerTau / 9)); }
+      document.querySelectorAll("[data-p]").forEach(b => b.classList.toggle("is-on", b.dataset.p === mode));
+      restart(); setPlay(true);
+    }
+    function setRho(r) {
+      S.rho = r; PR = params(CASES[r]); ISL = island(PR.kappa);
+      document.querySelectorAll("[data-rho]").forEach(b => b.classList.toggle("is-on", b.dataset.rho === r));
+      info(); preset(S.mode === "custom" ? "locked" : S.mode);
+    }
+    function size() { P = fit(cvP, 0.8); O = fit(cvO, 0.8); draw(); }
+    let last = null;
+    function frame(ts) {
+      if (last !== null && S.running && !S.done && S.visible) { advance(Math.min(ts - last, 50) / 1000); draw(); }
+      if (S.done && S.running) setPlay(false);
+      last = ts; requestAnimationFrame(frame);
+    }
+    document.querySelectorAll("[data-rho]").forEach(b => b.addEventListener("click", () => setRho(b.dataset.rho)));
+    document.querySelectorAll("[data-p]").forEach(b => b.addEventListener("click", () => preset(b.dataset.p)));
+    playBtn.addEventListener("click", () => { if (S.done) { restart(); setPlay(true); } else setPlay(!S.running); });
+    elSpeed.addEventListener("input", () => setSpeed(fromSlider(+elSpeed.value)));
+    cvP.addEventListener("pointerdown", ev => {
+      const r = cvP.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top;
+      const psi = (x - pad.l) / (P.w - pad.l - pad.r) * TAU - PI;
+      const yy = YR() - (y - pad.t) / (P.h - pad.t - pad.b) * 2 * YR();
+      if (psi < -PI || psi > PI || Math.abs(yy) > YR()) return;
+      S.mode = "custom"; S.th0 = psi - PR.psic; S.tp0 = yy / (100 * PR.yscale);
+      document.querySelectorAll("[data-p]").forEach(b => b.classList.remove("is-on"));
+      restart(); setPlay(true);
+    });
+    window.addEventListener("resize", size);
+    size(); info(); preset("locked"); setPlay(!reduce);
+    onScreen(cvP, v => { S.visible = v; });
+    requestAnimationFrame(frame);
+    if (document.fonts) document.fonts.ready.then(draw);
+  }
+}
+</script>
+</body>
+</html>
