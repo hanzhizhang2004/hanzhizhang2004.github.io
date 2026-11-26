@@ -652,3 +652,18 @@ mjx-assistive-mml { height: 1px !important; }
 .fig-sep { width: 1px; height: 1.8rem; background: var(--rule); margin: 0 0.4rem; }
 
 @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
+
+/* ------------ Prominent report button ------------ */
+.report-cta-wrap { margin: 1.6rem 0 0.4rem; }
+.report-cta-end { margin-top: 2.5rem; padding-top: 1.8rem; border-top: 1px solid var(--rule); }
+.report-cta {
+  display: inline-flex; flex-direction: column; gap: 0.25rem;
+  padding: 0.95rem 1.5rem; border: 1.5px solid var(--oxblood); border-radius: 2px;
+  background: var(--oxblood); color: var(--paper);
+  box-shadow: 0 10px 24px -16px rgba(110,26,31,0.7);
+  transition: background .18s ease, transform .18s ease;
+}
+.report-cta:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); transform: translateY(-1px); }
+.report-cta:focus-visible { outline: 2px solid var(--oxblood); outline-offset: 3px; }
+.report-cta-main { font-family: var(--display); font-size: 1.25rem; font-weight: 500; letter-spacing: 0.01em; }
+.report-cta-sub { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; }
