@@ -854,3 +854,21 @@ mjx-assistive-mml { height: 1px !important; }
   .fig-scroll svg.fig-svg { min-width: 480px; }
 }
 .stat-label mjx-container, .stat-label mjx-container * { text-transform: none; }
+
+/* ------------ Cards that open one link but also hold others (essays page) ------------ */
+.card-stretch { color: inherit; border-bottom: none; }
+.card-stretch::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.card-stretch:focus-visible { outline: none; }
+.card:has(.card-stretch:focus-visible) { border-color: var(--oxblood); box-shadow: 0 0 0 2px var(--oxblood); }
+.card-desc a { position: relative; z-index: 2; }
+
+/* ------------ Essay page: a hand pointing at the PDF button ------------ */
+.essay-cta { margin: 2.2rem 0 0.6rem; }
+.essay-cta-inner { display: inline-flex; flex-direction: column; align-items: center; gap: 0.25rem; }
+.essay-hand {
+  font-family: "Apple Symbols", "Segoe UI Symbol", "DejaVu Sans", "Noto Sans Symbols", "Noto Sans Symbols 2", sans-serif;
+  font-size: 2.7rem; line-height: 1; color: var(--oxblood); -webkit-text-stroke: 0.025em currentColor;
+  animation: hand-bob 1.6s ease-in-out infinite;
+}
+@keyframes hand-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
+@media (prefers-reduced-motion: reduce) { .essay-hand { animation: none; } }
