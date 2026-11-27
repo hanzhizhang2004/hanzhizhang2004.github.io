@@ -842,3 +842,15 @@ mjx-assistive-mml { height: 1px !important; }
 .fig-inline svg.fig-svg { display: block; width: 100%; height: auto; background: rgba(255,252,245,0.55); border: 1px solid var(--rule); border-radius: 2px; }
 .refs { margin-top: 2.2rem; font-size: 0.92rem; color: var(--ink-mute); }
 .refs p { margin: 0.3rem 0; }
+
+/* ------------ Diamagnetic page: algorithm boxes, closing aside, wide figures ------------ */
+.algo { margin: 1.5rem 0 1.4rem; padding: 0.85rem 1.15rem 0.6rem; border-left: 3px solid var(--oxblood); background: rgba(235,228,212,0.55); border-radius: 0 2px 2px 0; }
+.algo .callout-label { margin: 0 0 0.35rem; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--oxblood); }
+.algo p { margin: 0.45rem 0; }
+.algo .eq { margin: 0.6rem 0; background: transparent; border-left: 0; padding: 0.2rem 0; }
+.aside-note { margin-top: 3rem; text-align: center; font-family: var(--display); font-style: italic; font-size: 0.86rem; color: var(--ink-mute); }
+@media (max-width: 640px) {
+  .fig-scroll { overflow-x: auto; overflow-y: hidden; }
+  .fig-scroll svg.fig-svg { min-width: 480px; }
+}
+.stat-label mjx-container, .stat-label mjx-container * { text-transform: none; }

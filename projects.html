@@ -83,37 +83,14 @@
     <!-- ============ PROJECT 4 ============ -->
     <a class="card" href="projects/diamagnetic.html">
       <div class="card-figure">
-        <!-- diamagnetic levitation: magnet + floating disc -->
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="mag1" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0" stop-color="#3a342c"/><stop offset="1" stop-color="#1a1814"/>
-            </linearGradient>
-          </defs>
-          <!-- field lines -->
-          <g fill="none" stroke="#6e1a1f" stroke-width="0.5" opacity=".45">
-            <path d="M100 140 C 40 90, 40 50, 100 50 C 160 50, 160 90, 100 140"/>
-            <path d="M100 140 C 30 95, 30 40, 100 35 C 170 40, 170 95, 100 140"/>
-            <path d="M100 140 C 60 100, 60 70, 100 65 C 140 70, 140 100, 100 140"/>
-          </g>
-          <!-- magnet -->
-          <rect x="60" y="135" width="80" height="32" fill="url(#mag1)" rx="2"/>
-          <rect x="60" y="135" width="40" height="32" fill="#6e1a1f"/>
-          <text x="80"  y="156" text-anchor="middle" fill="#f4efe6" font-family="EB Garamond" font-size="14" font-style="italic">N</text>
-          <text x="120" y="156" text-anchor="middle" fill="#f4efe6" font-family="EB Garamond" font-size="14" font-style="italic">S</text>
-          <!-- floating diamagnet -->
-          <ellipse cx="100" cy="70" rx="32" ry="6" fill="#3a342c" opacity=".25"/>
-          <ellipse cx="100" cy="66" rx="32" ry="6" fill="#ebe4d4" stroke="#3a342c" stroke-width="0.8"/>
-          <!-- annotation -->
-          <line x1="135" y1="66" x2="160" y2="50" stroke="#3a342c" stroke-width="0.5"/>
-          <text x="162" y="49" fill="#3a342c" font-family="EB Garamond" font-style="italic" font-size="10">χ &lt; 0</text>
-        </svg>
+        <!-- a graphite ring floating around the outer edge of the core + shell magnet (assets/levitation.js) -->
+        <canvas id="card-lev" role="img" aria-label="Animation: a graphite ring floats around the outer edge of a two-part magnet and swings from side to side"></canvas>
       </div>
       <div class="card-body">
         <span class="card-kicker">Summer Research · 07.2024 – 09.2024</span>
-        <h3 class="card-title">Diamagnetic Levitation</h3>
+        <h3 class="card-title">Optimising Diamagnetic Levitation</h3>
         <div class="card-meta">University College London — Prof. Peter Barker</div>
-        <p class="card-desc">A computational study of the optimal shape of a diamagnetic body levitating above a rotationally symmetric permanent magnet, with stability and oscillation analysis.</p>
+        <p class="card-desc">What shape should a piece of graphite have to float as high as possible above a magnet, or to oscillate sideways as fast as possible? Two optimisations, solved exactly as level sets of the lift and stiffness densities.</p>
         <span class="card-cta">Read more →</span>
       </div>
     </a>
@@ -268,6 +245,9 @@
 </script>
 <script src="assets/pta-sheet.js"></script>
 <script>PTASheet(document.getElementById("card-pta"), {elev: 40, fit: "height", zoom: 0.95, dy: 0.05, line: 0.55});
+</script>
+<script src="assets/levitation.js"></script>
+<script>LevitationScene(document.getElementById("card-lev"), {elev: 34, margin: 0.07});
 </script>
 </body>
 </html>
