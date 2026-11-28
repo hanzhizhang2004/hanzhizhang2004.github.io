@@ -872,3 +872,4 @@ mjx-assistive-mml { height: 1px !important; }
 }
 @keyframes hand-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
 @media (prefers-reduced-motion: reduce) { .essay-hand { animation: none; } }
+.footer .footer-mark { font-family: var(--serif); font-style: italic; font-size: 1rem; letter-spacing: .02em; text-transform: none; color: var(--oxblood); line-height: 1; }
