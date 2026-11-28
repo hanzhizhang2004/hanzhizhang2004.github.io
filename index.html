@@ -3,126 +3,233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hanzhi Zhang</title>
+<meta name="description" content="Hans (Hanzhi) Zhang — a Cambridge Part III student interested in gravitational physics, general relativity, and black holes.">
+<title>Hans (Hanzhi) Zhang · Oh! Gravity.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+.home.page { max-width: 1120px; }
+.home .masthead { margin-bottom: 3.8rem; }
+.home .brand { font-size: 1.3rem; }
+.home .hero { grid-template-columns: 1fr 1.05fr; gap: 2rem; align-items: center; margin-bottom: 4rem; }
+.home .hero-name { font-size: clamp(2.8rem, 4.7vw, 3.6rem); line-height: 1.04; margin-bottom: 1.7rem; }
+.home .hero-name .name-line { display: block; }
+.home .hero-name .ornament { color: var(--oxblood); font-size: 1.4rem; font-style: italic; letter-spacing: .025em; text-transform: none; margin-bottom: 1.1rem; }
+.home .hero-intro { font-size: 1.16rem; line-height: 1.65; }
+.home .hero-intro p:first-child::first-letter { float: none; font: inherit; padding: 0; color: inherit; }
+.home .hero-intro p { margin-bottom: 1.15em; }
+.home .hero-intro .black-hole-aside { white-space: normal; }
+.penrose { margin: 0; align-self: center; }
+.penrose svg { width: 100%; height: auto; display: block; overflow: visible; }
+.penrose .math-label { font-family: var(--serif); font-size: 19px; font-style: italic; fill: var(--ink-soft); }
+.penrose .small-label { font-family: var(--serif); font-size: 14px; fill: var(--ink-mute); }
+.penrose .region { font-family: var(--serif); font-size: 28px; fill: var(--ink-soft); }
+.penrose .region-md { font-size: 19px; }
+.penrose .region-sm { font-family: var(--serif); font-size: 17px; fill: var(--ink-mute); }
+.penrose .tiny-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; fill: var(--ink-mute); }
+.penrose .cat-caption { font-family: var(--serif); font-style: italic; font-size: 21px; fill: var(--oxblood); }
+.black-hole-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+.black-hole-gallery figure { margin: 0; min-width: 0; }
+.black-hole-gallery .image-link { display: block; border: 0; background: #000; overflow: hidden; }
+.black-hole-gallery img { display: block; width: 100%; height: auto; aspect-ratio: 1.2; object-fit: contain; transition: transform .5s ease; }
+.black-hole-gallery .image-link:hover img { transform: scale(1.025); }
+.black-hole-gallery figcaption { padding-top: 1rem; color: var(--ink-mute); font-size: .95rem; line-height: 1.5; }
+.black-hole-gallery h2 { font-weight: 500; font-size: 1.4rem; color: var(--ink); margin: 0 0 .2rem; }
+.black-hole-gallery p { margin-bottom: .45rem; }
+.black-hole-gallery .credit { font-size: .78rem; }
+.home .footer { margin-top: 3.5rem; }
+@media (max-width: 820px) {
+  .home .hero { grid-template-columns: 1fr; gap: 1.5rem; }
+  .home .hero-name .name-line { display: inline; }
+  .penrose { width: min(100%, 540px); margin: 0 auto; }
+  .home .hero-intro { max-width: none; }
+}
+@media (prefers-reduced-motion: reduce) { .black-hole-gallery img { transition: none; } }
+@media (max-width: 540px) {
+  .home.page { padding: 1.7rem 1.25rem 3rem; }
+  .home .masthead { flex-direction: column; gap: .85rem; margin-bottom: 2.6rem; }
+  .home nav.primary { gap: 1.3rem; font-size: .87rem; }
+  .home .hero-name { font-size: 2.9rem; }
+  .home .hero-name .name-line { display: block; }
+  .home .hero-intro { font-size: 1.12rem; }
+  .black-hole-gallery { grid-template-columns: 1fr; gap: 2rem; }
+  .home .footer { font-size: .62rem; letter-spacing: .045em; }
+}
+</style>
 </head>
 <body>
-<div class="page">
-
-  <!-- ============ MASTHEAD ============ -->
+<div class="page home">
   <header class="masthead rise rise-1">
-    <a href="index.html" class="brand">
-      <span class="glyph"></span>
-      Hanzhi Zhang
-    </a>
-    <nav class="primary">
-      <a href="index.html" class="is-active">Home</a>
+    <a href="index.html" class="brand"><span class="glyph" aria-hidden="true"></span>Hans (Hanzhi) Zhang</a>
+    <nav class="primary" aria-label="Main navigation">
+      <a href="index.html" class="is-active" aria-current="page">Home</a>
       <a href="projects.html">Projects</a>
       <a href="essays.html">Essays &amp; Blogs</a>
       <a href="cv.html">CV</a>
     </nav>
   </header>
-
-  <!-- ============ HERO ============ -->
-  <section class="hero rise rise-2">
-    <div>
-      <h1 class="hero-name">
-        <span class="ornament">— mathematical physics —</span>
-        Hanzhi Zhang
-      </h1>
-      <div class="hero-intro">
-        <p>I am a Part III student in the <em>Mathematical Tripos</em> at the University of Cambridge, reading theoretical physics with St John's College. My interests sit at the meeting point of <em>classical and quantum gravity</em>: the geometry of black holes, gravitational instantons and Einstein manifolds, holography, and the ringdown and inspiral of compact binaries.</p>
-        <p>I came to Part III from a background in gravitational-wave data analysis and classical general relativity; the more geometric and mathematical sensibility of the Cambridge courses — and the work of people like J. Lucietti, H. Reall, J. Santos, J. Sparks, T. Wiseman and Ó. Dias — has gradually pulled my interest toward the structural and exact side of gravity. This site is a quiet place to record that drift.</p>
-        <p>Outside mathematics and physics, I fence (épée), write the occasional prose poem, and listen to a fair amount of music — nobody dislikes <a href="https://www.toe.st" target="_blank" rel="noopener">toe</a>.</p>
+  <main>
+    <section class="hero rise rise-2" aria-labelledby="name">
+      <div>
+        <h1 class="hero-name" id="name"><span class="ornament">Oh! Gravity.</span>Hans <span class="name-line">(Hanzhi) Zhang.</span></h1>
+        <div class="hero-intro">
+          <p>I am a Master's student in Theoretical Physics (<a href="https://en.wikipedia.org/wiki/Part_III_of_the_Mathematical_Tripos" target="_blank" rel="noopener"><em>Part III of the Mathematical Tripos</em></a>) at the University of Cambridge, St John's College.</p>
+          <p>My research interests broadly lie in gravitational physics and general relativity, from rigorous mathematical questions to astronomical applications, and from classical gravity to its quantum corrections. <span class="black-hole-aside">Oh, and I have a particular soft spot for black holes.</span></p>
+          <p>Outside mathematics and physics, I fence (épée), write the occasional prose poem, and listen to a fair amount of music — nobody dislikes <a href="https://www.toe.st" target="_blank" rel="noopener">toe</a>.</p>
+        </div>
       </div>
-    </div>
+      <figure class="penrose">
+        <svg viewBox="-6 20 646 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="penrose-title penrose-desc">
+  <title id="penrose-title">A cat at future null infinity of a Kerr black hole</title>
+  <desc id="penrose-desc">Carter–Penrose diagram of the maximally extended subextremal Kerr spacetime (central portion). Exterior region I with i⁺, i⁰, i⁻ and null infinities; the event horizon r = r₊; the black-hole region II; the Cauchy horizon r = r₋; regions III bounded by the timelike ring singularity r = 0; and the next white-hole region and further exteriors fading into the infinite tower. A cartoon cat holds on to future null infinity of region I, pressing it in slightly, and peers into the dark black-hole region.</desc>
+  <defs>
+    <radialGradient id="bh-dark" cx="250" cy="250" r="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14110e"/>
+      <stop offset=".65" stop-color="#2a221c"/>
+      <stop offset="1" stop-color="#4a3328"/>
+    </radialGradient>
+    <linearGradient id="fade-y" x1="0" y1="20" x2="0" y2="620" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".2" stop-color="#fff" stop-opacity=".9"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".9"/>
+      <stop offset=".97" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="ext-fade" maskUnits="userSpaceOnUse" x="-10" y="0" width="620" height="640"><rect x="-10" y="0" width="620" height="640" fill="url(#fade-y)"/></mask>
+    <pattern id="null-grid" width="17" height="17" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <path d="M0 0V17 M0 0H17" fill="none" stroke="#b6aa94" stroke-opacity=".22" stroke-width=".7"/>
+    </pattern>
+    <pattern id="null-grid-dark" width="17" height="17" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <path d="M0 0V17 M0 0H17" fill="none" stroke="#f4efe6" stroke-opacity=".07" stroke-width=".7"/>
+    </pattern>
+    <marker id="future-arrow" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7" fill="none" stroke="#7c7161" stroke-width="1"/></marker>
+  </defs>
 
-    <!-- horizon / geodesic figure -->
-    <figure class="hero-figure">
-      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <radialGradient id="horizon" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#1a1814" stop-opacity="1"/>
-            <stop offset="55%" stop-color="#1a1814" stop-opacity="1"/>
-            <stop offset="78%" stop-color="#3a342c" stop-opacity=".4"/>
-            <stop offset="100%" stop-color="#3a342c" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="disk" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"  stop-color="#6e1a1f" stop-opacity="0"/>
-            <stop offset="60%" stop-color="#6e1a1f" stop-opacity="0"/>
-            <stop offset="78%" stop-color="#8a2a30" stop-opacity=".6"/>
-            <stop offset="92%" stop-color="#8a6a2e" stop-opacity=".35"/>
-            <stop offset="100%" stop-color="#8a6a2e" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
+  <!-- Continuation of the tower: next white-hole block above, past white hole and mirror exterior I′ below/left. -->
+  <g mask="url(#ext-fade)" fill="none" stroke="#a89a84" stroke-width="1.1">
+    <path d="M250 180 370 60 250 -60 130 60Z" fill="#ebe4d4" fill-opacity=".5"/>
+    <path d="M250 420 370 540 250 660 130 540Z" fill="#ebe4d4" fill-opacity=".5"/>
+    <path d="M130 300 250 420 130 540 10 420Z" fill="url(#null-grid)"/>
+    <path d="M370 60 490 -60 M130 60 10 -60 M370 540 490 660 M130 540 10 660" stroke-dasharray="3 5"/>
+  </g>
+  <g mask="url(#ext-fade)" class="small-label" text-anchor="middle" fill-opacity=".9">
+    <text x="130" y="425" class="region-sm">I′</text>
+    <text x="250" y="70" class="region-sm">II′</text>
+    <text x="250" y="555" class="region-sm">II′</text>
+  </g>
 
-        <!-- outer geodesic rings -->
-        <g fill="none" stroke="#1a1814" stroke-width="0.6" opacity=".35">
-          <ellipse cx="200" cy="200" rx="180" ry="60"/>
-          <ellipse cx="200" cy="200" rx="160" ry="48" transform="rotate(15 200 200)"/>
-          <ellipse cx="200" cy="200" rx="140" ry="38" transform="rotate(35 200 200)"/>
-          <ellipse cx="200" cy="200" rx="120" ry="28" transform="rotate(60 200 200)"/>
-          <ellipse cx="200" cy="200" rx="100" ry="20" transform="rotate(90 200 200)"/>
-        </g>
+  <!-- Regions III: r < r₋, each bounded by a timelike ring singularity r = 0. -->
+  <path d="M370 300 250 180 370 60Z" fill="#ebe4d4" fill-opacity=".85"/>
+  <path d="M130 300 250 180 130 60Z" fill="#ebe4d4" fill-opacity=".85"/>
+  <path d="M250 180 370 60 M250 180 130 60" fill="none" stroke="#997a4f" stroke-width="1.3" stroke-dasharray="6 5"/>
+  <path d="M370.0 62.0 L373.2 69.2 L366.8 76.3 L373.2 83.5 L366.8 90.6 L373.2 97.8 L366.8 104.9 L373.2 112.1 L366.8 119.2 L373.2 126.4 L366.8 133.5 L373.2 140.7 L366.8 147.8 L373.2 155.0 L366.8 162.1 L373.2 169.3 L366.8 176.4 L373.2 183.6 L366.8 190.7 L373.2 197.9 L366.8 205.0 L373.2 212.2 L366.8 219.3 L373.2 226.5 L366.8 233.6 L373.2 240.8 L366.8 247.9 L373.2 255.1 L366.8 262.2 L373.2 269.4 L366.8 276.5 L373.2 283.7 L366.8 290.8 L370.0 298.0" fill="none" stroke="#6e1a1f" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M130.0 62.0 L133.2 69.2 L126.8 76.3 L133.2 83.5 L126.8 90.6 L133.2 97.8 L126.8 104.9 L133.2 112.1 L126.8 119.2 L133.2 126.4 L126.8 133.5 L133.2 140.7 L126.8 147.8 L133.2 155.0 L126.8 162.1 L133.2 169.3 L126.8 176.4 L133.2 183.6 L126.8 190.7 L133.2 197.9 L126.8 205.0 L133.2 212.2 L126.8 219.3 L133.2 226.5 L126.8 233.6 L133.2 240.8 L126.8 247.9 L133.2 255.1 L126.8 262.2 L133.2 269.4 L126.8 276.5 L133.2 283.7 L126.8 290.8 L130.0 298.0" fill="none" stroke="#6e1a1f" stroke-width="1.5" stroke-linejoin="round" opacity=".75"/>
 
-        <!-- accretion disk (oxblood/gold) -->
-        <circle cx="200" cy="200" r="160" fill="url(#disk)"/>
+  <!-- Region I: the exterior. -->
+  <path d="M250 420 370 300 490 420 370 540Z" fill="#fbf8f2" fill-opacity=".55"/>
+  <path d="M250 420 370 300 490 420 370 540Z" fill="url(#null-grid)"/>
 
-        <!-- photon sphere ring -->
-        <circle cx="200" cy="200" r="100" fill="none" stroke="#6e1a1f" stroke-width="0.8" stroke-dasharray="2 4" opacity=".5"/>
+  <!-- Region II: the black hole, r₋ < r < r₊. -->
+  <path d="M250 420 370 300 250 180 130 300Z" fill="url(#bh-dark)"/>
+  <path d="M250 420 370 300 250 180 130 300Z" fill="url(#null-grid-dark)"/>
+  <path d="M130 300 250 180 370 300" fill="none" stroke="#c9a66b" stroke-width="1.4" stroke-dasharray="6 5"/>
+  <path d="M130 300 250 420 370 300" fill="none" stroke="#6e1a1f" stroke-width="2"/>
+  <path d="M250 420 370 540" fill="none" stroke="#8b7f6c" stroke-width="1.3"/>
 
-        <!-- horizon -->
-        <circle cx="200" cy="200" r="70" fill="url(#horizon)"/>
-        <circle cx="200" cy="200" r="70" fill="#0a0907"/>
+  <!-- Null infinity of region I; ℐ⁺ is pressed in where the cat holds on. -->
+  <path d="M370.0 300.0 L372.0 302.0 L374.0 304.0 L376.0 306.0 L378.0 308.0 L380.0 310.0 L381.9 312.1 L383.9 314.1 L385.8 316.2 L387.7 318.3 L389.6 320.4 L391.5 322.5 L393.3 324.7 L395.1 326.9 L396.8 329.2 L398.4 331.6 L400.0 334.0 L401.5 336.5 L403.0 339.0 L404.4 341.6 L405.9 344.1 L407.3 346.7 L408.8 349.2 L410.4 351.6 L412.0 354.0 L413.8 356.2 L415.6 358.4 L417.7 360.3 L419.8 362.2 L422.1 363.9 L424.5 365.5 L426.9 367.1 L429.4 368.6 L432.0 370.0 L434.6 371.4 L437.1 372.9 L439.6 374.4 L442.1 375.9 L444.5 377.5 L446.8 379.2 L449.1 380.9 L451.3 382.7 L453.5 384.5 L455.7 386.3 L457.8 388.2 L459.8 390.2 L461.9 392.1 L463.9 394.1 L466.0 396.0 L468.0 398.0 L470.0 400.0 L472.0 402.0 L474.0 404.0 L476.0 406.0 L478.0 408.0 L480.0 410.0 L482.0 412.0 L484.0 414.0 L486.0 416.0 L488.0 418.0 L490.0 420.0 L370 540" fill="none" stroke="#2a251f" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
 
-        <!-- annotation tick marks -->
-        <g stroke="#1a1814" stroke-width="0.7" opacity=".5">
-          <line x1="200" y1="20"  x2="200" y2="30"/>
-          <line x1="200" y1="380" x2="200" y2="370"/>
-          <line x1="20"  y1="200" x2="30"  y2="200"/>
-          <line x1="380" y1="200" x2="370" y2="200"/>
-        </g>
+  <g class="region" text-anchor="middle">
+    <text x="392" y="432">I</text>
+    <text x="250" y="312" fill="#f4efe6">II</text>
+    <text x="328" y="196" class="region-md">III</text>
+    <text x="172" y="196" class="region-md">III</text>
+  </g>
+  <g class="math-label">
+    <text x="378" y="292">i⁺</text>
+    <text x="497" y="426">i⁰</text>
+    <text x="364" y="562">i⁻</text>
+    <text x="440" y="498">ℐ⁻</text>
+    <text x="446" y="422">ℐ⁺</text>
+    <text x="304" y="398" transform="rotate(-45 304 398)" fill="#6e1a1f">r = r₊</text>
+    <text x="318" y="218" transform="rotate(45 318 218)" fill="#8a6a2e">r = r₋</text>
+    <text x="352" y="150" transform="rotate(-90 352 150)" fill="#6e1a1f" text-anchor="middle">r = 0</text>
+  </g>
+  <g class="tiny-label">
+    <text x="0" y="44">Kerr, 0 &lt; |a| &lt; M</text>
+  </g>
+  <g transform="translate(20 470)">
+    <path d="M0 34V2" stroke="#7c7161" stroke-width="1" marker-end="url(#future-arrow)"/>
+    <text x="-12" y="54" class="small-label">future</text>
+  </g>
 
-        <!-- labels -->
-        <g font-family="EB Garamond, serif" font-style="italic" fill="#3a342c" font-size="11">
-          <text x="200" y="14" text-anchor="middle">∂ℳ</text>
-          <text x="200" y="115" text-anchor="middle" fill="#6e1a1f" font-size="9">r = 3M</text>
-          <text x="200" y="206" text-anchor="middle" fill="#f4efe6" font-size="11">ℋ</text>
-        </g>
-      </svg>
-      <figcaption>schematic — horizon, photon sphere, geodesic foliation</figcaption>
-    </figure>
-  </section>
+  <!-- Cartoon cat, drawn in a frame whose x-axis runs along ℐ⁺; its paws curl over the line. -->
+  <g transform="translate(422.8 352.8) rotate(45)" stroke="#2a251f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- tail -->
+    <path d="M38 -22 C64 -20 80 -42 76 -64 C73 -79 59 -80 59 -70" fill="none" stroke-width="11"/>
+    <path d="M38 -22 C64 -20 80 -42 76 -64 C73 -79 59 -80 59 -70" fill="none" stroke="#e9c79c" stroke-width="7"/>
+    <path d="M73 -42 l6 1 M77 -56 l6 -2" stroke="#c48a55" stroke-width="2.4"/>
+    <!-- body, mostly behind the head -->
+    <ellipse cx="10" cy="-20" rx="36" ry="21" fill="#f6e8d2"/>
+    <path d="M24 -36 q6 6 4 13 M34 -33 q5 5 3 11" fill="none" stroke="#c48a55" stroke-width="2.4"/>
+    <!-- forelegs -->
+    <path d="M-25 -22 C-26 -12 -24 -2 -20 3 L-8 3 C-8 -6 -9 -14 -8 -22Z" fill="#f6e8d2"/>
+    <path d="M8 -22 C8 -14 7 -6 8 3 L20 3 C23 -2 25 -12 24 -22Z" fill="#f6e8d2"/>
+    <g transform="rotate(-30 0 -22)">
+    <!-- head -->
+    <path d="M-40 -60 L-44 -96 L-16 -78 C-6 -81 4 -81 14 -78 L40 -96 L36 -60 C42 -44 36 -22 0 -20 C-36 -22 -46 -44 -40 -60Z" fill="#f6e8d2"/>
+    <path d="M-39 -88 -36 -70 -26 -79Z M35 -88 32 -70 22 -79Z" fill="#e7a99c" stroke="none"/>
+    <path d="M-8 -78 -6 -68 M0 -80 0 -69 M8 -78 6 -68" fill="none" stroke="#c48a55" stroke-width="2.6"/>
+    <path d="M-44 -50 -36 -49 M-45 -43 -37 -44 M44 -50 36 -49 M45 -43 37 -44" fill="none" stroke="#c48a55" stroke-width="2.4"/>
+    <!-- eyes: whites with pupils turned towards region II, the black-hole interior -->
+    <ellipse cx="-15" cy="-49" rx="9" ry="10.5" fill="#fffaf0" stroke-width="1.6"/>
+    <ellipse cx="15" cy="-49" rx="9" ry="10.5" fill="#fffaf0" stroke-width="1.6"/>
+    <ellipse cx="-20.2" cy="-48.2" rx="4.6" ry="6.4" fill="#2a251f" stroke="none"/>
+    <ellipse cx="9.8" cy="-48.2" rx="4.6" ry="6.4" fill="#2a251f" stroke="none"/>
+    <circle cx="-18.9" cy="-51" r="1.6" fill="#fffaf0" stroke="none"/>
+    <circle cx="11.1" cy="-51" r="1.6" fill="#fffaf0" stroke="none"/>
+    <ellipse cx="-27" cy="-35" rx="6" ry="3.2" fill="#eeaea0" fill-opacity=".55" stroke="none"/>
+    <ellipse cx="27" cy="-35" rx="6" ry="3.2" fill="#eeaea0" fill-opacity=".55" stroke="none"/>
+    <path d="M-3 -38 3 -38 0 -34.5Z" fill="#d98f86" stroke-width="1.2"/>
+    <path d="M0 -34.5 Q-2.5 -29 -6.5 -31.5 M0 -34.5 Q2.5 -29 6.5 -31.5" fill="none" stroke-width="1.3"/>
+    <path d="M-30 -40 -52 -45 M-30 -36 -52 -34 M30 -40 52 -45 M30 -36 52 -34" fill="none" stroke-width="1" stroke-opacity=".75"/>
+    </g>
+    <!-- paws curled over ℐ⁺ (which sits at y ≈ 7 here) -->
+    <path d="M-23 3 C-24 12 -6 13 -6 4 C-6 1 -22 0 -23 3Z" fill="#f6e8d2"/>
+    <path d="M6 4 C6 13 24 12 23 3 C22 0 6 1 6 4Z" fill="#f6e8d2"/>
+    <path d="M-17.5 6.5 -17.5 10 M-12 6.5 -12 10 M12 6.5 12 10 M17.5 6.5 17.5 10" stroke-width="1.1"/>
+  </g>
 
-  <!-- ============ RESEARCH INTERESTS ============ -->
-  <section class="rise rise-3">
-    <div class="section-head">
-      <span class="section-num">§ I</span>
-      <h2 class="section-title">Research Interests</h2>
-      <div class="section-rule"></div>
-    </div>
 
-    <div class="research-intro">
-      <p>My research interest began in <em>gravitational-wave astrophysics</em> — the inspiral of compact binaries, pulsar timing, and the statistics of stochastic backgrounds. Part III has slowly shifted me toward a more geometric and theoretical view of gravity, in which black holes are studied as solutions of Einstein's equation in their own right, and the analytic and topological structure of those solutions is itself the object of interest. My current interests are organised loosely around four themes:</p>
-    </div>
-
-    <ol class="interests">
-      <li><span class="num">i.</span><span><strong>Geometry of black holes</strong> and gravitational solutions — uniqueness, near-horizon geometries, higher-dimensional solutions.</span></li>
-      <li><span class="num">ii.</span><span><strong>Gravitational instantons</strong> and Einstein geometry — Ricci-flat and Einstein metrics, Euclidean quantum gravity.</span></li>
-      <li><span class="num">iii.</span><span><strong>AdS black holes and holography</strong> — quasinormal modes, hydrodynamics, gauge/gravity duality.</span></li>
-      <li><span class="num">iv.</span><span><strong>Black-hole binaries and gravitational waves</strong> — post-Newtonian and self-force methods, ringdown, PTA statistics.</span></li>
-    </ol>
-  </section>
-
-  <!-- ============ FOOTER ============ -->
+  <text x="398" y="236" class="cat-caption">staring to the darkness.</text>
+  <path d="M474 246 Q484 260 476 274" fill="none" stroke="#a58970" stroke-width=".9"/>
+</svg>
+      </figure>
+    </section>
+    <section class="black-hole-gallery rise rise-3" aria-label="Black holes in simulation and observation">
+      <figure>
+        <a class="image-link" href="https://svs.gsfc.nasa.gov/13326/" target="_blank" rel="noopener"><img src="assets/black-hole-disk.gif" alt="NASA simulation of a black hole's thin accretion disk, with its far side lensed above and below the dark shadow." width="1040" height="600" loading="lazy"></a>
+        <figcaption>
+          <h2>Light around a black hole</h2>
+          <p>A simulated thin accretion disk around a non-rotating black hole. Gravitational lensing reveals the far side; relativistic beaming makes the approaching side brighter.</p>
+          <p class="credit"><a href="https://svs.gsfc.nasa.gov/13326/" target="_blank" rel="noopener">NASA's Goddard Space Flight Center/Jeremy Schnittman</a></p>
+        </figcaption>
+      </figure>
+      <figure>
+        <a class="image-link" href="https://www.eso.org/public/images/eso1907a/" target="_blank" rel="noopener"><img src="assets/m87-eht.jpg" alt="The Event Horizon Telescope image of M87 star: an asymmetric orange ring of radio emission around a central brightness depression." width="4000" height="2330" loading="lazy"></a>
+        <figcaption>
+          <h2>M87*, observed</h2>
+          <p>The first EHT image, released in 2019 from 2017 observations at 1.3 mm. Radio emission surrounds a central brightness depression associated with the black hole's shadow.</p>
+          <p class="credit"><a href="https://www.eso.org/public/images/eso1907a/" target="_blank" rel="noopener">EHT Collaboration</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></p>
+        </figcaption>
+      </figure>
+    </section>
+  </main>
   <footer class="footer">
-    <span>Cambridge</span>
+    <span class="footer-mark">oh! Gravity</span>
     <span><a href="mailto:hz497@cam.ac.uk">hz497@cam.ac.uk</a></span>
   </footer>
-
 </div>
 </body>
 </html>
